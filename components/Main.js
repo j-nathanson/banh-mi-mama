@@ -1,11 +1,9 @@
-
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './Home';
 import MenuScreen from './Menu';
 import ReviewOrderScreen from './ReviewOrder';
 import CheckoutScreen from './CheckoutPage';
-
 import MenuItemScreen from './MenuItem';
 
 const Stack = createStackNavigator();
