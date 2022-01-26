@@ -6,7 +6,7 @@ export default function ReviewOrderScreen({ navigation }) {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Order Review Screen</Text>
             <Button
-                title="Go to menu item"
+                title="Checkout"
                 onPress={() =>
                     navigation.navigate('Checkout')
                 }
