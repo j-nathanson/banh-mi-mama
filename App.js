@@ -4,13 +4,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Main from './components/Main';
 
 import HomeScreen from './components/Home';
-import DetailsScreen from './components/Details';
+import DetailsScreen from './components/Menu';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-  <Main/>
+    <NavigationContainer>
+      <Main />
+    </NavigationContainer>
+
   );
 }
 

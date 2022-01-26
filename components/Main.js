@@ -1,19 +1,19 @@
 
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './Home';
-import DetailsScreen from './Details';
+import MenuScreen from './Menu';
+import MenuItemScreen from './MenuItem';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export default function Main() {
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen name="Details" component={DetailsScreen} />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name='Home' component={HomeScreen} />
+            <Stack.Screen name='Menu' component={MenuScreen} />
+            <Stack.Screen name='MenuItem' component={MenuItemScreen} options={{ presentation: 'modal', }} />
+        </Stack.Navigator>
     )
 }
+
