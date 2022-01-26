@@ -1,4 +1,4 @@
-export const Menu = [
+export const MENU = [
     {
         id: 0,
         name: "bánh mì thịt",
