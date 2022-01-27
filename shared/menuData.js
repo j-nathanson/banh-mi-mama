@@ -1,7 +1,7 @@
 export const MENU = [
     {
         id: 0,
-        name: "bánh mì thịt",
+        name: "Bánh mì thịt",
         type: "banh mi",
         image: require('../assets/images/banh-mi-thit.jpeg')
     },
@@ -56,7 +56,7 @@ export const MENU = [
     },
     {
         id: 9,
-        name: "gỏi cuốn",
+        name: "Gỏi cuốn",
         type: "sides",
         image: require('../assets/images/goi-cuon.jpg')
     },
@@ -104,7 +104,7 @@ export const MENU = [
     },
     {
         id: 17,
-        name: "dừa tắc",
+        name: "Dừa tắc",
         type: "drinks",
         image: require('../assets/images/dua-tac.jpg')
     },

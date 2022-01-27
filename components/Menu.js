@@ -36,7 +36,7 @@ export default function MenuScreen({ navigation }) {
                         padding: 5,
                         marginBottom: 15
                     }}>
-                        <Text>{item.name}</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}</Text>
                         <Text style={{ padding: 0, }}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, pariatur?</Text>
                     </View>
                     <View>
