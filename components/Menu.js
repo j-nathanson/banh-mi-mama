@@ -3,17 +3,13 @@ import { ListItem, Card } from 'react-native-elements';
 import { Button, View, Text, FlatList, TouchableHighlight } from 'react-native';
 import { MENU } from "../shared/menuData";
 
-// 
-// <ListItem.Content>
-//     <ListItem.Title>{item.name}</ListItem.Title>
-//     <ListItem.Subtitle>lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quidem eius at quod </ListItem.Subtitle>
-// </ListItem.Content>
+//  onPress={() => navigate('CampsiteInfo', { campsiteId: item.id })}
 export default function MenuScreen({ navigation }) {
 
     const renderMenuItem = ({ item }) => {
         return (
             <TouchableHighlight onPress={() =>
-                navigation.navigate('MenuItem')
+                navigation.navigate('MenuItem', { menuItemId: item.id })
             } underlayColor="white">
                 <Card containerStyle={{
                     borderRadius: 20,
