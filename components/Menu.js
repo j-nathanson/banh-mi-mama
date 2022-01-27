@@ -40,7 +40,7 @@ export default function MenuScreen({ navigation }) {
                         <Text style={{ padding: 0, }}>{item.description}</Text>
                     </View>
                     <View>
-                        <Text>$8.00</Text>
+                        <Text>${item.price}</Text>
                     </View>
                 </Card>
             </TouchableHighlight >
