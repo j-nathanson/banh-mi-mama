@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
-import MENU_ITEMS from '../shared/menuData'
+import { MENU } from '../shared/menuData'
 
 const initialState = {
-    menuItems: MENU_ITEMS
+    menu: MENU
 }
 
-export const menuSlice = createSlice({
+export const menuReducer = createSlice({
     name: 'menu',
     initialState,
     reducers: {},
 })
 
-// export const { increment, decrement, incrementByAmount } = menuSlice.actions
+// export const { increment, decrement, incrementByAmount } = menuReducer.actions
 
-export default menuSlice.reducer
+export default menuReducer.reducer

@@ -5,8 +5,6 @@ import Main from './components/Main';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 
-const Stack = createNativeStackNavigator();
-
 function App() {
   return (
     <NavigationContainer>

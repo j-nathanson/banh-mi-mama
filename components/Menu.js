@@ -2,9 +2,11 @@ import React from "react";
 import { ListItem, Card } from 'react-native-elements';
 import { Button, View, Text, FlatList, TouchableHighlight } from 'react-native';
 import { MENU } from "../shared/menuData";
+import { useSelector } from 'react-redux'
 
-//  onPress={() => navigate('CampsiteInfo', { campsiteId: item.id })}
+
 export default function MenuScreen({ navigation }) {
+    const menu = useSelector((state) => state.menuReducer.menu)
 
     const renderMenuItem = ({ item }) => {
         return (
@@ -48,7 +50,7 @@ export default function MenuScreen({ navigation }) {
             <Text>Menu Screen</Text>
             <FlatList
                 keyExtractor={item => item.id.toString()}
-                data={MENU}
+                data={menu}
                 renderItem={renderMenuItem}
             />
             <Button
