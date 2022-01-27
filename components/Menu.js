@@ -1,12 +1,10 @@
 import React from "react";
 import { ListItem, Card } from 'react-native-elements';
 import { Button, View, Text, FlatList, TouchableHighlight } from 'react-native';
-import { MENU } from "../shared/menuData";
 import { useSelector } from 'react-redux'
 
-
 export default function MenuScreen({ navigation }) {
-    const menu = useSelector((state) => state.menuReducer.menu)
+    const menu = useSelector((state) => state.menuReducer.menu);
 
     const renderMenuItem = ({ item }) => {
         return (
