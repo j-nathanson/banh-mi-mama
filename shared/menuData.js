@@ -14,81 +14,98 @@ export const MENU = [
     {
         id: 2,
         name: "Bánh mì chay",
-        type: "banh mi"
+        type: "banh mi",
+        image: require('../assets/images/banh-mi-chay.jpg')
     },
     {
         id: 3,
         name: "Bánh mì heo quay",
-        type: "banh mi"
+        type: "banh mi",
+        image: require('../assets/images/banh-mi-heo-quay.jpg')
+
     },
     {
         id: 4,
         name: "Bánh mì ốp la",
-        type: "banh mi"
+        type: "banh mi",
+        image: require('../assets/images/banh-mi-op-la.jpeg')
     },
     {
         id: 5,
         name: "Xôi gà",
-        type: "rice"
+        type: "rice",
+        image: require('../assets/images/xoi-ga.jpg')
     },
     {
         id: 6,
         name: "Cơm tấm",
-        type: "rice"
+        type: "rice",
+        image: require('../assets/images/com-tam.jpg')
     },
     {
         id: 7,
         name: "Cơm chiên",
-        type: "rice"
+        type: "rice",
+        image: require('../assets/images/com-chien.jpg')
     },
     {
         id: 8,
         name: "Thịt Kho",
-        type: "rice"
+        type: "rice",
+        image: require('../assets/images/thit-kho.jpg')
     },
     {
         id: 9,
         name: "gỏi cuốn",
-        type: "sides"
+        type: "sides",
+        image: require('../assets/images/goi-cuon.jpg')
     },
     {
         id: 10,
         name: "gỏi cuốn chay",
-        type: "sides"
+        type: "sides",
+        image: require('../assets/images/goi-cuon-chay.jpg')
     },
     {
         id: 11,
         name: "Bánh xèo",
-        type: "sides"
+        type: "sides",
+        image: require('../assets/images/banh-xeo.jpg')
     },
     {
         id: 12,
-        name: "Chả Giò ",
-        type: "sides"
+        name: "Chả Giò",
+        type: "sides",
+        image: require('../assets/images/cha-gio.jpg')
     },
     {
         id: 13,
         name: "Nước Mía",
-        type: "drinks"
+        type: "drinks",
+        image: require('../assets/images/nuoc-mia.jpg')
     },
     {
         id: 14,
         name: "Cà Phê Sữa đá",
-        type: "drinks"
+        type: "drinks",
+        image: require('../assets/images/ca-phe-sua.jpg')
     },
     {
         id: 15,
         name: "Cà Phê Đen Đá",
-        type: "drinks"
+        type: "drinks",
+        image: require('../assets/images/ca-phe-den.png')
     },
     {
         id: 16,
         name: "Cà phê trứng",
-        type: "drinks"
+        type: "drinks",
+        image: require('../assets/images/ca-phe-trung.jpg')
     },
     {
         id: 17,
         name: "dừa tắc",
-        type: "drinks"
+        type: "drinks",
+        image: require('../assets/images/dua-tac.jpg')
     },
 ]
