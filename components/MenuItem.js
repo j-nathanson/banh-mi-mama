@@ -2,7 +2,7 @@ import React from "react";
 import { Button, View, Text } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem } from "../redux/cartSlice";
+import { addItem, removeItem } from "../redux/cartSlice";
 
 export default function MenuItemScreen({ route, navigation }) {
     const { menuItemId } = route.params;
@@ -12,6 +12,10 @@ export default function MenuItemScreen({ route, navigation }) {
 
     const addToCart = (item) => {
         dispatch(addItem(item));
+        navigation.navigate('Menu');
+    }
+    const removeFromCart = (item) => {
+        dispatch(removeItem(item));
         navigation.navigate('Menu');
     }
 
@@ -25,6 +29,10 @@ export default function MenuItemScreen({ route, navigation }) {
             <Button
                 title="add to cart"
                 onPress={() => addToCart(menuItem)}
+            />
+            <Button
+                title="remove from cart"
+                onPress={() => removeFromCart(menuItem)}
             />
         </Card>
     );
