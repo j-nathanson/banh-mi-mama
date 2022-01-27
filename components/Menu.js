@@ -23,12 +23,13 @@ export default function MenuScreen({ navigation }) {
                 >
                     <Card.Image style={{
                         width: '100%',
-                        height: 150,
+                        height: 200,
                         borderTopLeftRadius: 20,
                         borderTopRightRadius: 20,
                         marginBottom: 15
                     }}
-                        resizeMode="cover" source={require('../assets/banh-mi-thit.jpeg')}>
+                        resizeMode="cover"
+                        source={item.image}>
                     </Card.Image>
 
                     <View style={{
@@ -42,7 +43,7 @@ export default function MenuScreen({ navigation }) {
                         <Text>$8.00</Text>
                     </View>
                 </Card>
-            </TouchableHighlight>
+            </TouchableHighlight >
         )
     }
 

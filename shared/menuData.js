@@ -2,12 +2,14 @@ export const MENU = [
     {
         id: 0,
         name: "bánh mì thịt",
-        type: "banh mi"
+        type: "banh mi",
+        image: require('../assets/images/banh-mi-thit.jpeg')
     },
     {
         id: 1,
         name: "Bánh mì xíu mại",
-        type: "banh mi"
+        type: "banh mi",
+        image: require('../assets/images/banh-mi-xiu-mai.jpg')
     },
     {
         id: 2,
