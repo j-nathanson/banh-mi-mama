@@ -52,12 +52,6 @@ export default function MenuScreen({ navigation }) {
                 renderItem={renderMenuItem}
             />
             <Button
-                title="Go to menu item"
-                onPress={() =>
-                    navigation.navigate('MenuItem')
-                }
-            />
-            <Button
                 title="Review Order"
                 onPress={() =>
                     navigation.navigate('ReviewOrder')
