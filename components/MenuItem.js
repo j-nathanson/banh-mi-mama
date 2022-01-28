@@ -8,27 +8,37 @@ export default function MenuItemScreen({ route, navigation }) {
     const { menuItemId } = route.params;
     const menu = useSelector((state) => state.menuReducer.menu);
     const menuItem = menu.filter(item => item.id === menuItemId)[0];
-    const [quantity, setQuantity] = useState(1)
-
+    const [quantity, setQuantity] = useState(1);
+    const [totalCost, setTotalCost] = useState(menuItem.price)
     const dispatch = useDispatch();
+
+    const menuCartItem = {
+        name: menuItem.name,
+        pricePerItem: menuItem.price,
+        quantity,
+        totalCost
+    }
 
     const decrementQuantity = () => {
         if (quantity >= 2) {
             setQuantity(quantity - 1)
+            setTotalCost(totalCost - menuItem.price)
         }
     }
     const incrementQuantity = () => {
         if (quantity < 20) {
             setQuantity(quantity + 1)
+            setTotalCost(totalCost + menuItem.price)
         }
     }
 
     const addToCart = (item) => {
-        let i = quantity
-        while (i > 0) {
-            dispatch(addItem(item));
-            i--;
-        }
+        // let i = quantity;
+        // while (i > 0) {
+        //     dispatch(addItem(item));
+        //     i--;
+        // }
+        dispatch(addItem(item))
         navigation.navigate('Menu');
     }
 
@@ -59,10 +69,17 @@ export default function MenuItemScreen({ route, navigation }) {
                     </TouchableOpacity>
                 </View>
             </View>
-            <Button
-                title="add to cart"
-                onPress={() => addToCart(menuItem)}
-            />
+
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                <Text>
+                    ${totalCost}
+                </Text>
+                <Button
+                    title="add to cart"
+                    onPress={() => addToCart(menuCartItem)}
+                />
+            </View>
+
         </Card>
     );
 }
