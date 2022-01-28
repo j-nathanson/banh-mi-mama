@@ -33,11 +33,6 @@ export default function MenuItemScreen({ route, navigation }) {
     }
 
     const addToCart = (item) => {
-        // let i = quantity;
-        // while (i > 0) {
-        //     dispatch(addItem(item));
-        //     i--;
-        // }
         dispatch(addItem(item))
         navigation.navigate('Menu');
     }

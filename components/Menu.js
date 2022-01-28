@@ -4,7 +4,8 @@ import { Button, View, Text, FlatList, TouchableHighlight } from 'react-native';
 import { useSelector } from 'react-redux'
 
 export default function MenuScreen({ navigation }) {
-    const menu = useSelector((state) => state.menuReducer.menu);
+    const menu = useSelector(state => state.menuReducer.menu);
+    const orderCost = useSelector(state => state.cartReducer.totalOrderCost);
 
     const renderMenuItem = ({ item }) => {
         return (
@@ -44,6 +45,7 @@ export default function MenuScreen({ navigation }) {
     }
 
     return (
+
         <View style={{ flex: 1, alignItems: 'center', }}>
             <Text>Menu Screen</Text>
             <FlatList
@@ -51,6 +53,7 @@ export default function MenuScreen({ navigation }) {
                 data={menu}
                 renderItem={renderMenuItem}
             />
+            <Text>${orderCost}</Text>
             <Button
                 title="Review Order"
                 onPress={() =>
@@ -58,6 +61,7 @@ export default function MenuScreen({ navigation }) {
                 }
             />
         </View>
+
     );
 }
 
