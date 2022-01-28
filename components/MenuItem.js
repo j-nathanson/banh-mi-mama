@@ -24,13 +24,13 @@ export default function MenuItemScreen({ route, navigation }) {
     }
 
     const addToCart = (item) => {
-        dispatch(addItem(item));
+        let i = quantity
+        while (i > 0) {
+            dispatch(addItem(item));
+            i--;
+        }
         navigation.navigate('Menu');
     }
-    // const removeFromCart = (item) => {
-    //     dispatch(removeItem(item));
-    //     navigation.navigate('Menu');
-    // }
 
     return (
         <Card>
@@ -40,7 +40,7 @@ export default function MenuItemScreen({ route, navigation }) {
             />
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text>Quanity</Text>
+                <Text>Quantity</Text>
                 <View style={{ flexDirection: 'row' }}>
                     <TouchableOpacity onPress={() => decrementQuantity()}>
                         <Icon
