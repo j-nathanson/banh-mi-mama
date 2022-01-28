@@ -14,11 +14,10 @@ export default function MenuItemScreen({ route, navigation }) {
         dispatch(addItem(item));
         navigation.navigate('Menu');
     }
-    const removeFromCart = (item) => {
-        dispatch(removeItem(item));
-        navigation.navigate('Menu');
-    }
-
+    // const removeFromCart = (item) => {
+    //     dispatch(removeItem(item));
+    //     navigation.navigate('Menu');
+    // }
 
     return (
         <Card>
@@ -29,10 +28,6 @@ export default function MenuItemScreen({ route, navigation }) {
             <Button
                 title="add to cart"
                 onPress={() => addToCart(menuItem)}
-            />
-            <Button
-                title="remove from cart"
-                onPress={() => removeFromCart(menuItem)}
             />
         </Card>
     );
