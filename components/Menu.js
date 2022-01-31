@@ -1,6 +1,6 @@
 import React from "react";
 import { ListItem, Card } from 'react-native-elements';
-import { Button, View, Text, FlatList, TouchableHighlight } from 'react-native';
+import { Button, View, Text, FlatList, TouchableHighlight, SectionList } from 'react-native';
 import { useSelector } from 'react-redux'
 
 export default function MenuScreen({ navigation }) {
@@ -54,10 +54,13 @@ export default function MenuScreen({ navigation }) {
 
         <View style={{ flex: 1, alignItems: 'center', }}>
             <Text>Menu Screen</Text>
-            <FlatList
-                keyExtractor={item => item.id.toString()}
-                data={menu}
+            <SectionList
+                sections={menu}
+                keyExtractor={(item, index) => item + index}
                 renderItem={renderMenuItem}
+                renderSectionHeader={({ section: { title } }) => (
+                    <Text>{title}</Text>
+                )}
             />
             <Text>${orderCost}</Text>
             <Button
@@ -71,3 +74,8 @@ export default function MenuScreen({ navigation }) {
     );
 }
 
+// <FlatList
+// keyExtractor={item => item.id.toString()}
+// data={menu}
+// renderItem={renderMenuItem}
+// />
