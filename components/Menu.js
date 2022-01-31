@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ListItem, Card } from 'react-native-elements';
 import { Button, View, Text, FlatList, TouchableHighlight, SectionList } from 'react-native';
 import { useSelector } from 'react-redux'
@@ -11,6 +11,15 @@ export default function MenuScreen({ navigation }) {
     const menu = useSelector(state => state.menuReducer.menu);
     const orderCost = useSelector(state => state.cartReducer.totalOrderCost);
 
+    // const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
+    // const myRef = useRef(null)
+    // const executeScroll = () => scrollToRef(myRef)
+
+    const sectionListRef = useRef(null);
+
+    const renderSectionHeader = ({ section: { title } }) => (
+        <Text>{title}</Text>
+    )
     const renderMenuItem = ({ item }) => {
 
         return (
@@ -54,13 +63,44 @@ export default function MenuScreen({ navigation }) {
 
         <View style={{ flex: 1, alignItems: 'center', }}>
             <Text>Menu Screen</Text>
+            <Button
+                title="Banh Mi"
+                onPress={() => {
+                    sectionListRef.current.scrollToLocation({
+                        sectionIndex: 0, itemIndex: 0
+                    });
+                }}
+            />
+            <Button
+                title="Rice Dishes"
+                onPress={() => {
+                    sectionListRef.current.scrollToLocation({
+                        sectionIndex: 1, itemIndex: 0
+                    });
+                }}
+            />
+            <Button
+                title="Sides"
+                onPress={() => {
+                    sectionListRef.current.scrollToLocation({
+                        sectionIndex: 2, itemIndex: 0
+                    });
+                }}
+            />
+            <Button
+                title="Drinks"
+                onPress={() => {
+                    sectionListRef.current.scrollToLocation({
+                        sectionIndex: 3, itemIndex: 0
+                    });
+                }}
+            />
             <SectionList
+                ref={sectionListRef}
                 sections={menu}
                 keyExtractor={(item, index) => item + index}
                 renderItem={renderMenuItem}
-                renderSectionHeader={({ section: { title } }) => (
-                    <Text>{title}</Text>
-                )}
+                renderSectionHeader={renderSectionHeader}
             />
             <Text>${orderCost}</Text>
             <Button
@@ -69,13 +109,7 @@ export default function MenuScreen({ navigation }) {
                     navigation.navigate('ReviewOrder')
                 }
             />
-        </View>
+        </View >
 
     );
 }
-
-// <FlatList
-// keyExtractor={item => item.id.toString()}
-// data={menu}
-// renderItem={renderMenuItem}
-// />
