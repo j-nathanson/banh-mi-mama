@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 export default function Main() {
     return (
         <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name='Home' component={HomeScreen} />
+            <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} />
             <Stack.Screen name='Menu' component={MenuScreen} />
             <Stack.Screen name='MenuItem' component={MenuItemScreen} options={{ presentation: 'modal', }} />
             <Stack.Screen name='ReviewOrder' component={ReviewOrderScreen} />

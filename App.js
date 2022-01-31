@@ -3,8 +3,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import Main from './components/Main';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import AppLoading from 'expo-app-loading';
+import { useFonts, LobsterTwo_400Regular_Italic } from '@expo-google-fonts/lobster-two';
+
 
 function App() {
+  let [fontsLoaded] = useFonts({
+    LobsterTwo_400Regular_Italic,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <NavigationContainer>
       <Provider store={store}>

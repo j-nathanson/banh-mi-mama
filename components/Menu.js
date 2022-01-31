@@ -4,11 +4,17 @@ import { Button, View, Text, FlatList, TouchableHighlight } from 'react-native';
 import { useSelector } from 'react-redux'
 
 export default function MenuScreen({ navigation }) {
+    // use filter to get menu sections?
+    const sandwiches = useSelector(state => state.menuReducer.menu).filter(item => item.type === 'banh mi')
+    console.log(sandwiches)
+
     const menu = useSelector(state => state.menuReducer.menu);
     const orderCost = useSelector(state => state.cartReducer.totalOrderCost);
 
     const renderMenuItem = ({ item }) => {
+
         return (
+
             <TouchableHighlight onPress={() =>
                 navigation.navigate('MenuItem', { menuItemId: item.id })
             } underlayColor="white">
