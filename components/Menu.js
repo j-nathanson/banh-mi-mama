@@ -99,6 +99,7 @@ export default function MenuScreen({ navigation }) {
                 keyExtractor={(item, index) => item + index}
                 renderItem={renderMenuItem}
                 renderSectionHeader={renderSectionHeader}
+                stickySectionHeadersEnabled={true}
             />
             <Text>${orderCost}</Text>
             <Button
@@ -116,17 +117,21 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flex: 1,
+        backgroundColor: 'white',
+
     },
     buttonGroup: {
         flexDirection: 'row',
         marginBottom: 30
     },
     headerContainer: {
+        backgroundColor: 'white',
+        padding: 5,
 
     },
     header: {
         fontFamily: 'DMSans_400Regular',
         fontSize: 40,
-        marginLeft: 20
+        marginLeft: 10
     }
 })

@@ -44,7 +44,7 @@ export const MENU = [
         }]
     },
     {
-        title: 'rice dishes',
+        title: 'Rice dishes',
         data: [{
             id: 5,
             name: 'Xôi gà - (Chicken with Sticky Rice)',
@@ -79,7 +79,7 @@ export const MENU = [
         }]
     },
     {
-        title: 'sides',
+        title: 'Sides',
         data: [{
             id: 9,
             name: 'Gỏi cuốn - (Shrimp spring rolls)',
@@ -114,7 +114,7 @@ export const MENU = [
         }]
     },
     {
-        title: 'drinks',
+        title: 'Drinks',
         data: [{
             id: 13,
             name: 'Nước Mía - (Sugarcane juice)',
