@@ -20,6 +20,8 @@ export default function Main() {
                 },
                 headerTitleStyle: {
                     color: '#3e5d18',
+                    fontFamily: 'DMSans_400Regular',
+                    fontSize: 30
 
                 },
                 headerTitleAlign: 'center'
