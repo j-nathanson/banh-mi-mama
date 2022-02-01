@@ -5,16 +5,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItem, removeItem } from "../redux/cartSlice";
 
 export default function MenuItemScreen({ route, navigation }) {
-    const { menuItemId } = route.params;
-    const menu = useSelector((state) => state.menuReducer.menu);
-    const menuItem = menu.filter(item => item.id === menuItemId)[0];
+    const { name, price, image } = route.params;
     const [quantity, setQuantity] = useState(1);
-    const [totalCost, setTotalCost] = useState(menuItem.price)
+    const [totalCost, setTotalCost] = useState(price);
     const dispatch = useDispatch();
 
     const menuCartItem = {
-        name: menuItem.name,
-        pricePerItem: menuItem.price,
+        name: name,
+        pricePerItem: price,
         quantity,
         totalCost
     }
@@ -22,13 +20,13 @@ export default function MenuItemScreen({ route, navigation }) {
     const decrementQuantity = () => {
         if (quantity >= 2) {
             setQuantity(quantity - 1)
-            setTotalCost(totalCost - menuItem.price)
+            setTotalCost(totalCost - price)
         }
     }
     const incrementQuantity = () => {
         if (quantity < 20) {
             setQuantity(quantity + 1)
-            setTotalCost(totalCost + menuItem.price)
+            setTotalCost(totalCost + price)
         }
     }
 
@@ -39,9 +37,9 @@ export default function MenuItemScreen({ route, navigation }) {
 
     return (
         <Card>
-            <Text>Menu item {menuItemId}</Text>
+            <Text>Menu item</Text>
             <Card.Image
-                source={menuItem.image}
+                source={image}
             />
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>

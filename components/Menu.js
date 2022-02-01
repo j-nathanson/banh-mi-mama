@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { ListItem, Card } from 'react-native-elements';
-import { Button, View, Text, FlatList, TouchableHighlight, SectionList } from 'react-native';
+import { Button, View, Text, FlatList, TouchableHighlight, SectionList, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux'
 
 export default function MenuScreen({ navigation }) {
@@ -11,9 +11,6 @@ export default function MenuScreen({ navigation }) {
     const menu = useSelector(state => state.menuReducer.menu);
     const orderCost = useSelector(state => state.cartReducer.totalOrderCost);
 
-    // const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
-    // const myRef = useRef(null)
-    // const executeScroll = () => scrollToRef(myRef)
 
     const sectionListRef = useRef(null);
 
@@ -25,7 +22,7 @@ export default function MenuScreen({ navigation }) {
         return (
 
             <TouchableHighlight onPress={() =>
-                navigation.navigate('MenuItem', { menuItemId: item.id })
+                navigation.navigate('MenuItem', { name: item.name, price: item.price, image: item.image })
             } underlayColor="white">
                 <Card containerStyle={{
                     borderRadius: 20,
@@ -61,40 +58,41 @@ export default function MenuScreen({ navigation }) {
 
     return (
 
-        <View style={{ flex: 1, alignItems: 'center', }}>
-            <Text>Menu Screen</Text>
-            <Button
-                title="Banh Mi"
-                onPress={() => {
-                    sectionListRef.current.scrollToLocation({
-                        sectionIndex: 0, itemIndex: 0
-                    });
-                }}
-            />
-            <Button
-                title="Rice Dishes"
-                onPress={() => {
-                    sectionListRef.current.scrollToLocation({
-                        sectionIndex: 1, itemIndex: 0
-                    });
-                }}
-            />
-            <Button
-                title="Sides"
-                onPress={() => {
-                    sectionListRef.current.scrollToLocation({
-                        sectionIndex: 2, itemIndex: 0
-                    });
-                }}
-            />
-            <Button
-                title="Drinks"
-                onPress={() => {
-                    sectionListRef.current.scrollToLocation({
-                        sectionIndex: 3, itemIndex: 0
-                    });
-                }}
-            />
+        <View style={styles.container}>
+            <View style={styles.buttonGroup}>
+                <Button
+                    title="Banh Mi"
+                    onPress={() => {
+                        sectionListRef.current.scrollToLocation({
+                            sectionIndex: 0, itemIndex: 0
+                        });
+                    }}
+                />
+                <Button
+                    title="Rice Dishes"
+                    onPress={() => {
+                        sectionListRef.current.scrollToLocation({
+                            sectionIndex: 1, itemIndex: 0
+                        });
+                    }}
+                />
+                <Button
+                    title="Sides"
+                    onPress={() => {
+                        sectionListRef.current.scrollToLocation({
+                            sectionIndex: 2, itemIndex: 0
+                        });
+                    }}
+                />
+                <Button
+                    title="Drinks"
+                    onPress={() => {
+                        sectionListRef.current.scrollToLocation({
+                            sectionIndex: 3, itemIndex: 0
+                        });
+                    }}
+                />
+            </View>
             <SectionList
                 ref={sectionListRef}
                 sections={menu}
@@ -113,3 +111,14 @@ export default function MenuScreen({ navigation }) {
 
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        flex: 1,
+    },
+    buttonGroup: {
+        flexDirection: 'row',
+        marginBottom: 30
+    }
+})
