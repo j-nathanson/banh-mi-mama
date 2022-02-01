@@ -24,32 +24,19 @@ export default function MenuScreen({ navigation }) {
             <TouchableHighlight onPress={() =>
                 navigation.navigate('MenuItem', { name: item.name, price: item.price, image: item.image })
             } underlayColor="white">
-                <Card containerStyle={{
-                    borderRadius: 20,
-                    padding: 0,
-                    flex: 2
-                }}
+                <Card containerStyle={styles.cardContainer}
                 >
-                    <Card.Image style={{
-                        width: '100%',
-                        height: 200,
-                        borderTopLeftRadius: 20,
-                        borderTopRightRadius: 20,
-                        marginBottom: 15
-                    }}
+                    <Card.Image style={styles.cardImage}
                         resizeMode="cover"
                         source={item.image}>
                     </Card.Image>
 
-                    <View style={{
-                        padding: 5,
-                        marginBottom: 15
-                    }}>
-                        <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{item.name}</Text>
-                        <Text style={{ padding: 0, }}>{item.description}</Text>
+                    <View style={styles.cardTextContainer}>
+                        <Text style={styles.cardTextHeader}>{item.name}</Text>
+                        <Text style={styles.itemDescription}>{item.description}</Text>
                     </View>
                     <View>
-                        <Text>${item.price}</Text>
+                        <Text style={styles.itemPrice}>${(Math.round(item.price * 100) / 100).toFixed(2)}</Text>
                     </View>
                 </Card>
             </TouchableHighlight >
@@ -133,5 +120,38 @@ const styles = StyleSheet.create({
         fontFamily: 'DMSans_400Regular',
         fontSize: 40,
         marginLeft: 10
+    },
+    cardContainer: {
+        borderRadius: 20,
+        padding: 0,
+        flex: 2
+    },
+    cardImage: {
+        width: '100%',
+        height: 200,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        marginBottom: 5
+    },
+    cardTextContainer: {
+        padding: 10,
+        marginBottom: 15,
+
+    },
+    cardTextHeader: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        fontFamily: 'DMSans_700Bold',
+        marginBottom: 10
+    },
+    itemDescription: {
+        color: '#44484a',
+        fontFamily: 'DMSans_400Regular',
+        maxWidth: Platform.OS === 'ios' ? 350 : 400
+    },
+    itemPrice: {
+        fontFamily: 'DMSans_700Bold',
+        fontSize: 17,
+        padding: 10
     }
 })

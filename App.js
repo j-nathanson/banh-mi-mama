@@ -5,13 +5,14 @@ import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import AppLoading from 'expo-app-loading';
 import { useFonts, LobsterTwo_400Regular_Italic } from '@expo-google-fonts/lobster-two';
-import { DMSans_400Regular } from '@expo-google-fonts/dm-sans'
+import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans'
 
 
 function App() {
   let [fontsLoaded] = useFonts({
     LobsterTwo_400Regular_Italic,
-    DMSans_400Regular
+    DMSans_400Regular,
+    DMSans_700Bold
   });
 
   if (!fontsLoaded) {
