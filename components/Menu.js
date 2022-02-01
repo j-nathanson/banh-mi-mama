@@ -15,7 +15,7 @@ export default function MenuScreen({ navigation }) {
     const sectionListRef = useRef(null);
 
     const renderSectionHeader = ({ section: { title } }) => (
-        <Text>{title}</Text>
+        <View style={styles.headerContainer}><Text style={styles.header}>{title}</Text></View>
     )
     const renderMenuItem = ({ item }) => {
 
@@ -120,5 +120,13 @@ const styles = StyleSheet.create({
     buttonGroup: {
         flexDirection: 'row',
         marginBottom: 30
+    },
+    headerContainer: {
+
+    },
+    header: {
+        fontFamily: 'DMSans_400Regular',
+        fontSize: 40,
+        marginLeft: 20
     }
 })

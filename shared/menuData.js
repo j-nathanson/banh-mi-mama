@@ -1,6 +1,6 @@
 export const MENU = [
     {
-        title: 'banh mi',
+        title: 'Bánh mi',
         data: [{
             id: 0,
             name: 'Bánh mì thịt - (Classic) ',
@@ -47,7 +47,7 @@ export const MENU = [
         title: 'rice dishes',
         data: [{
             id: 5,
-            name: 'Xôi gà - (Sticky rice)',
+            name: 'Xôi gà - (Chicken with Sticky Rice)',
             type: 'rice',
             image: require('../assets/images/xoi-ga.jpg'),
             description: 'Sticky rice with chicken and fried shallots.',
@@ -55,7 +55,7 @@ export const MENU = [
         },
         {
             id: 6,
-            name: 'Cơm tấm - (Broken rice)',
+            name: 'Cơm tấm - (Pork with Broken Rice)',
             type: 'rice',
             image: require('../assets/images/com-tam.jpg'),
             description: '"Broken rice" with a sweet marinaded pork chop, fresh veggies, and dipping sauce.',
