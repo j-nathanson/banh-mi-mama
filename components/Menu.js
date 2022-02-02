@@ -26,7 +26,7 @@ export default function MenuScreen({ navigation }) {
         return (
 
             <TouchableHighlight onPress={() =>
-                navigation.navigate('MenuItem', { name: item.name, price: item.price, image: item.image })
+                navigation.navigate('MenuItem', { name: item.name, description: item.description, price: item.price, image: item.image })
             } underlayColor="white">
                 <Card containerStyle={styles.cardContainer}
                 >
