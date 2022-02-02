@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import { Card, Icon, buttonGroup } from 'react-native-elements';
-import { Button, View, Text, TouchableHighlight, SectionList, StyleSheet } from 'react-native';
+import { Card, Icon, Button } from 'react-native-elements';
+import { View, Text, TouchableHighlight, SectionList, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux'
 import { ButtonGroup } from "react-native-elements/dist/buttons/ButtonGroup";
 
@@ -128,13 +128,33 @@ export default function MenuScreen({ navigation }) {
                 renderSectionHeader={renderSectionHeader}
                 stickySectionHeadersEnabled={true}
             />
-            <Text>${orderCost}</Text>
-            <Button
-                title="Review Order"
-                onPress={() =>
-                    navigation.navigate('ReviewOrder')
-                }
-            />
+            <View style={styles.orderContainer}>
+                <Text style={styles.orderTotalCost}>${(Math.round(orderCost * 100) / 100).toFixed(2)}</Text>
+
+                <Button
+                    title="Review Order"
+                    onPress={() =>
+                        navigation.navigate('ReviewOrder')
+                    }
+                    icon={{
+                        name: 'shopping-basket',
+                        type: 'entypo',
+                        size: 20,
+                        color: '#3e5d18',
+                    }}
+                    buttonStyle={{
+                        backgroundColor: 'rgba(244, 244, 244, 1)',
+                        borderRadius: 3,
+                    }}
+                    containerStyle={{
+                        height: 40,
+                        width: 200,
+                        marginBottom: 5,
+                        marginTop: 5
+                    }}
+                    titleStyle={{ marginHorizontal: 10, color: 'black' }}
+                />
+            </View>
         </View >
     );
 }
@@ -195,5 +215,14 @@ const styles = StyleSheet.create({
         fontFamily: 'DMSans_700Bold',
         fontSize: 17,
         padding: 10
+    },
+    orderContainer: {
+        width: '80%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
+    orderTotalCost: {
+        fontFamily: 'DMSans_700Bold',
     }
 })
