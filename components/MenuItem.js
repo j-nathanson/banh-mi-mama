@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SandwichCustomize from "./SandwichCustomize";
-import { Button, View, Text, Image, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
-import { Card, Icon } from 'react-native-elements';
+import { View, ScrollView, Text, Image, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
+import { Button, Card, Icon } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import { resetCustomizations } from "../redux/sandwichSlice";
 import { addItem, removeItem } from "../redux/cartSlice";
@@ -92,15 +92,33 @@ export default function MenuItemScreen({ route, navigation }) {
                 </View>
                 <View style={{ width: '100%' }}>
                     {type === 'banh mi' ? <SandwichCustomize /> : <View />}
-
                 </View>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignSelf: 'center' }}>
-                <Text>
-                    ${totalCost}
+            <View style={styles.footer}>
+                <Text style={{ fontFamily: 'DMSans_700Bold' }}>
+                    Total Price: ${totalCost}
                 </Text>
                 <Button
-                    title="add to cart"
+                    title="add to bag"
+                    icon={{
+                        name: 'shopping-bag',
+                        type: 'entypo',
+                        size: 10,
+                        color: 'white',
+                    }}
+                    iconContainerStyle={{ marginRight: 10 }}
+                    titleStyle={{ fontWeight: '400' }}
+                    buttonStyle={{
+                        backgroundColor: '#e52d27',
+                        borderColor: 'transparent',
+                        borderRadius: 10,
+                        padding: 5
+
+                    }}
+                    containerStyle={{
+                        width: 200,
+
+                    }}
                     onPress={() => {
                         addToCart(menuCartItem)
                         console.log(menuCartItem)
@@ -108,6 +126,7 @@ export default function MenuItemScreen({ route, navigation }) {
                     }}
                 />
             </View>
+
         </View>
     );
 }
@@ -115,9 +134,17 @@ export default function MenuItemScreen({ route, navigation }) {
 const styles = new StyleSheet.create({
     container: { flex: 1 },
     image: { flex: 2 },
-    body: { flex: 4, },
+    body: { flex: 4 },
+    footer: {
+        marginTop: 25,
+        marginBottom: 5,
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
     header: {
-        padding: 10
+        padding: 7
     },
     title: {
         fontWeight: 'bold',
