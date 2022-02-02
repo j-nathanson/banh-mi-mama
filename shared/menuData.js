@@ -7,7 +7,7 @@ export const MENU = [
             type: 'banh mi',
             image: require('../assets/images/banh-mi-thit.jpeg'),
             description: 'Assorted Vietnamese deli meats with cilantro, pickled daikon and carrots, chicken pâté, cilantro, and mayonnaise.',
-            price: 5.20
+            price: 5
         },
         {
             id: 1,

@@ -1,24 +1,28 @@
-import React, { useRef } from "react";
-import { ListItem, Card } from 'react-native-elements';
-import { Button, View, Text, FlatList, TouchableHighlight, SectionList, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import React, { useRef, useState } from "react";
+import { Card, Icon, buttonGroup } from 'react-native-elements';
+import { Button, View, Text, TouchableHighlight, SectionList, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux'
+import { ButtonGroup } from "react-native-elements/dist/buttons/ButtonGroup";
 
 export default function MenuScreen({ navigation }) {
-    // use filter to get menu sections?
-    const sandwiches = useSelector(state => state.menuReducer.menu).filter(item => item.type === 'banh mi')
-    console.log(sandwiches)
 
     const menu = useSelector(state => state.menuReducer.menu);
     const orderCost = useSelector(state => state.cartReducer.totalOrderCost);
 
+    const [color1, setColor1] = useState('#4ee44e');
+    const [color2, setColor2] = useState('#3e5d18');
+    const [color3, setColor3] = useState('#3e5d18');
+    const [color4, setColor4] = useState('#3e5d18');
 
     const sectionListRef = useRef(null);
 
     const renderSectionHeader = ({ section: { title } }) => (
-        <View style={styles.headerContainer}><Text style={styles.header}>{title}</Text></View>
+        <View style={styles.headerContainer}>
+            <Text style={styles.header}>{title}</Text>
+        </View>
     )
-    const renderMenuItem = ({ item }) => {
 
+    const renderMenuItem = ({ item }) => {
         return (
 
             <TouchableHighlight onPress={() =>
@@ -44,39 +48,75 @@ export default function MenuScreen({ navigation }) {
     }
 
     return (
+        <View style={styles.container} >
 
-        <View style={styles.container}>
             <View style={styles.buttonGroup}>
-                <Button
-                    title="Banh Mi"
-                    onPress={() => {
-                        sectionListRef.current.scrollToLocation({
-                            sectionIndex: 0, itemIndex: 0
-                        });
-                    }}
-                />
-                <Button
-                    title="Rice Dishes"
+                <TouchableHighlight>
+                    <Icon
+                        name='hamburger'
+                        type='font-awesome-5'
+                        color={color1}
+                        raised
+                        size={30}
+                        onPress={(e) => {
+                            {
+                                sectionListRef.current.scrollToLocation({
+                                    sectionIndex: 0, itemIndex: 0
+                                });
+                                setColor1('#4ee44e');
+                                setColor2('#3e5d18');
+                                setColor3('#3e5d18');
+                                setColor4('#3e5d18');
+                            }
+                        }}
+                    />
+                </TouchableHighlight>
+                <Icon
+                    name='rice'
+                    type='material-community'
+                    color={color2}
+                    raised
+                    size={30}
                     onPress={() => {
                         sectionListRef.current.scrollToLocation({
                             sectionIndex: 1, itemIndex: 0
                         });
+                        setColor1('#3e5d18');
+                        setColor2('#4ee44e');
+                        setColor3('#3e5d18');
+                        setColor4('#3e5d18');
                     }}
                 />
-                <Button
-                    title="Sides"
+                <Icon
+                    name='drumstick-bite'
+                    type='font-awesome-5'
+                    color={color3}
+                    raised
+                    size={30}
                     onPress={() => {
                         sectionListRef.current.scrollToLocation({
                             sectionIndex: 2, itemIndex: 0
                         });
+                        setColor1('#3e5d18');
+                        setColor2('#3e5d18');
+                        setColor3('#4ee44e');
+                        setColor4('#3e5d18');
                     }}
                 />
-                <Button
-                    title="Drinks"
+                <Icon
+                    name='local-drink'
+                    type='material'
+                    color={color4}
+                    raised
+                    size={30}
                     onPress={() => {
                         sectionListRef.current.scrollToLocation({
                             sectionIndex: 3, itemIndex: 0
                         });
+                        setColor1('#3e5d18');
+                        setColor2('#3e5d18');
+                        setColor3('#3e5d18');
+                        setColor4('#4ee44e');
                     }}
                 />
             </View>
@@ -96,7 +136,6 @@ export default function MenuScreen({ navigation }) {
                 }
             />
         </View >
-
     );
 }
 
@@ -109,7 +148,10 @@ const styles = StyleSheet.create({
     },
     buttonGroup: {
         flexDirection: 'row',
-        marginBottom: 30
+        justifyContent: 'space-around',
+        width: '80%',
+
+        margin: 5
     },
     headerContainer: {
         backgroundColor: 'white',
