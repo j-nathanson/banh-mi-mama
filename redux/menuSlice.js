@@ -11,6 +11,4 @@ export const menuReducer = createSlice({
     reducers: {},
 })
 
-// export const { increment, decrement, incrementByAmount } = menuReducer.actions
-
 export default menuReducer.reducer

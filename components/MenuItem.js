@@ -1,24 +1,17 @@
 import React, { useState } from "react";
+import SandwichCustomize from "./SandwichCustomize";
 import { Button, View, Text, Image, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
+import { resetCustomizations } from "../redux/sandwichSlice";
 import { addItem, removeItem } from "../redux/cartSlice";
-
-// <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-//                     <Text>
-//                         ${totalCost}
-//                     </Text>
-//                     <Button
-//                         title="add to cart"
-//                         onPress={() => addToCart(menuCartItem)}
-//                     />
-//                 </View>
 
 
 export default function MenuItemScreen({ route, navigation }) {
-    const { name, description, price, image } = route.params;
+    const { name, description, type, price, image } = route.params;
     const [quantity, setQuantity] = useState(1);
     const [totalCost, setTotalCost] = useState(price);
+    const customizations = useSelector(state => state.sandwichReducer.customizations)
     const dispatch = useDispatch();
 
     const menuCartItem = {
@@ -26,6 +19,10 @@ export default function MenuItemScreen({ route, navigation }) {
         pricePerItem: price,
         quantity,
         totalCost
+    }
+
+    if (type === 'banh mi') {
+        menuCartItem.customizations = customizations
     }
 
     const decrementQuantity = () => {
@@ -60,7 +57,10 @@ export default function MenuItemScreen({ route, navigation }) {
                     size={20}
                     raised
                     containerStyle={{ marginTop: 20 }}
-                    onPress={() => navigation.navigate('Menu')}
+                    onPress={() => {
+                        dispatch(resetCustomizations())
+                        navigation.navigate('Menu')
+                    }}
                 />
             </ImageBackground>
             <View style={styles.body}>
@@ -90,7 +90,23 @@ export default function MenuItemScreen({ route, navigation }) {
                         />
                     </View>
                 </View>
+                <View style={{ width: '100%' }}>
+                    {type === 'banh mi' ? <SandwichCustomize /> : <View />}
 
+                </View>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignSelf: 'center' }}>
+                <Text>
+                    ${totalCost}
+                </Text>
+                <Button
+                    title="add to cart"
+                    onPress={() => {
+                        addToCart(menuCartItem)
+                        console.log(menuCartItem)
+                        dispatch(resetCustomizations())
+                    }}
+                />
             </View>
         </View>
     );
@@ -99,7 +115,7 @@ export default function MenuItemScreen({ route, navigation }) {
 const styles = new StyleSheet.create({
     container: { flex: 1 },
     image: { flex: 2 },
-    body: { flex: 4 },
+    body: { flex: 4, },
     header: {
         padding: 10
     },
@@ -126,7 +142,6 @@ const styles = new StyleSheet.create({
         alignSelf: 'center'
     },
     quantityButtonGroup: {
-
         width: '40%',
         flexDirection: 'row',
         justifyContent: 'center'
