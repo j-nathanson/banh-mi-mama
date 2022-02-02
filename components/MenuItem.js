@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, View, Text, TouchableOpacity } from 'react-native';
+import { Button, View, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem, removeItem } from "../redux/cartSlice";
@@ -36,28 +36,41 @@ export default function MenuItemScreen({ route, navigation }) {
     }
 
     return (
-        <Card>
-            <Text>Menu item</Text>
-            <Card.Image
+        <View style={{ flex: 1 }}>
+            <ImageBackground
                 source={image}
-            />
+                resizeMode="cover"
+                style={{ flex: 2, }}
+            >
+                <Icon
+                    name='left'
+                    type='antdesign'
+                    color='grey'
+                    size={20}
+                    raised
+                    containerStyle={{ marginTop: 20 }}
+                    onPress={() => navigation.navigate('Menu')}
+                />
+            </ImageBackground>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 4 }}>
                 <Text>Quantity</Text>
                 <View style={{ flexDirection: 'row' }}>
                     <TouchableOpacity onPress={() => decrementQuantity()}>
                         <Icon
-                            name='minus-circle'
-                            type='feather'
+                            name='minus'
+                            type='antdesign'
                             color='grey'
+                            raised
                         />
                     </TouchableOpacity>
                     <Text>{quantity}</Text>
                     <TouchableOpacity onPress={() => incrementQuantity()}>
                         <Icon
-                            name='plus-circle'
-                            type='feather'
+                            name='plus'
+                            type='antdesign'
                             color='grey'
+                            raised
                         />
                     </TouchableOpacity>
                 </View>
@@ -73,6 +86,6 @@ export default function MenuItemScreen({ route, navigation }) {
                 />
             </View>
 
-        </Card>
+        </View>
     );
 }

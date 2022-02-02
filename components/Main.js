@@ -14,17 +14,17 @@ export default function Main() {
         <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name='Home' component={HomeScreen} options={{ headerShown: false }} />
             <Stack.Screen name='Menu' component={MenuScreen} options={{
-                headerTitleStyle: style.headerTitle,
+                headerTitleStyle: styles.headerTitle,
                 headerTitleAlign: 'center'
             }} />
-            <Stack.Screen name='MenuItem' component={MenuItemScreen} options={{ presentation: 'modal', }} />
+            <Stack.Screen name='MenuItem' component={MenuItemScreen} options={{ presentation: 'modal', headerShown: false }} />
             <Stack.Screen name='ReviewOrder' component={ReviewOrderScreen} />
             <Stack.Screen name='Checkout' component={CheckoutScreen} />
         </Stack.Navigator>
     )
 }
 
-const style = new StyleSheet.create({
+const styles = new StyleSheet.create({
     headerTitle: {
         color: '#3e5d18',
         fontFamily: 'DMSans_400Regular',
