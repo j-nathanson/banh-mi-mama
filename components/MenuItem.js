@@ -15,7 +15,8 @@ export default function MenuItemScreen({ route, navigation }) {
     const dispatch = useDispatch();
 
     const menuCartItem = {
-        name: name,
+        name,
+        image,
         pricePerItem: price,
         quantity,
         totalCost

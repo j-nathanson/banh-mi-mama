@@ -10,8 +10,10 @@ export const cartReducer = createSlice({
     initialState,
     reducers: {
         addItem: (state, action) => {
-            state.cart.push(action.payload);
-            state.totalOrderCost += action.payload.totalCost;
+            const item = action.payload
+            item.id = state.cart.length
+            state.cart.push(item);
+            state.totalOrderCost += item.totalCost;
             // console.log(state.cart);
         },
         removeItem: (state, action) => {

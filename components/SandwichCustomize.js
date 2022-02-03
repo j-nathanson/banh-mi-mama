@@ -7,7 +7,6 @@ import { updateProperty } from '../redux/sandwichSlice';
 export default function SandwichCustomize() {
 
     const dispatch = useDispatch();
-    // const menu = useSelector(state => state.menuReducer.menu);
     const cilantro = useSelector(state => state.sandwichReducer.customizations.cilantro);
     const pickledVeg = useSelector(state => state.sandwichReducer.customizations.pickledVeg);
     const pate = useSelector(state => state.sandwichReducer.customizations.pate);
