@@ -1,8 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Card, Icon, Button } from 'react-native-elements';
-import { View, Text, TouchableHighlight, SectionList, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux'
-import { ButtonGroup } from "react-native-elements/dist/buttons/ButtonGroup";
+import { View, Text, TouchableHighlight, SectionList, StyleSheet } from 'react-native'; import { useSelector } from 'react-redux'
 
 export default function MenuScreen({ navigation }) {
 
@@ -215,7 +213,7 @@ const styles = StyleSheet.create({
     itemDescription: {
         color: '#44484a',
         fontFamily: 'DMSans_400Regular',
-        maxWidth: Platform.OS === 'ios' ? 350 : 400
+        // maxWidth: Platform.OS === 'ios' ? 350 : 400
     },
     itemPrice: {
         fontFamily: 'DMSans_700Bold',

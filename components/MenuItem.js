@@ -121,7 +121,6 @@ export default function MenuItemScreen({ route, navigation }) {
                     }}
                     onPress={() => {
                         addToCart(menuCartItem)
-                        console.log(menuCartItem)
                         dispatch(resetCustomizations())
                     }}
                 />
