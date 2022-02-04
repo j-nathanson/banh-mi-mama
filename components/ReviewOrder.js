@@ -9,7 +9,8 @@ import { removeItem } from "../redux/cartSlice";
 export default function ReviewOrderScreen({ navigation }) {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cartReducer.cart)
-    const totalOrderCost = useSelector(state => state.cartReducer.totalOrderCost)
+    let totalOrderCost = useSelector(state => state.cartReducer.totalOrderCost)
+    totalOrderCost = (Math.round(totalOrderCost * 100) / 100).toFixed(2)
 
     if (cart.length === 0) {
         navigation.navigate('Menu')
@@ -37,10 +38,6 @@ export default function ReviewOrderScreen({ navigation }) {
                             dispatch(removeItem({ id: item.id, totalCost: item.totalCost }))
                         }
                     />
-
-
-
-
                 </ListItem.Content>
                 <Text>${item.totalCost}</Text>
             </ListItem>
@@ -58,20 +55,24 @@ export default function ReviewOrderScreen({ navigation }) {
                 <FlatList
                     data={cart}
                     renderItem={renderDirectoryItem}
+                    keyExtractor={item => item.id.toString()}
                 />
             </View>
-            <View style={{ flex: .5, marginTop: 'auto' }}>
-                <Text>{totalOrderCost}</Text>
-            </View>
-
             <Button
-                title="Checkout"
+                title={` $${totalOrderCost} Checkout Here`}
+                icon={{
+                    name: "food-fork-drink",
+                    type: 'material-community',
+                    size: 20,
+                    color: "white"
+                }}
                 onPress={() =>
                     navigation.navigate('Checkout')
                 }
+                buttonStyle={{
+                    backgroundColor: '#3e5d18'
+                }}
             />
-
-
         </View>
     );
 }
@@ -85,3 +86,6 @@ const styles = new StyleSheet.create({
     },
     delivery: { fontFamily: 'DMSans_700Bold' },
 })
+
+
+
