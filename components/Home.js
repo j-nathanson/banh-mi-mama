@@ -116,9 +116,33 @@ export default function HomeScreen({ navigation }) {
                     label='Apartment Number'
                     placeholder='6B'
                     leftIcon={{ type: 'material-community', name: 'doorbell' }}
-
-
                 />
+                <View style={{ alignItems: 'center' }}>
+                    <Button
+                        title="Start Your Order"
+                        icon={{
+                            name: 'shopping-bag',
+                            type: 'entypo',
+                            size: 15,
+                            color: 'white',
+                        }}
+                        iconContainerStyle={{ marginRight: 10 }}
+                        titleStyle={{ fontWeight: '700' }}
+                        buttonStyle={{
+                            backgroundColor: '#323232',
+                            borderColor: 'transparent',
+                            borderRadius: 30,
+                        }}
+                        containerStyle={{
+                            width: 200,
+
+                        }}
+                        onPress={() => {
+                            toggleOverlay()
+                            navigation.navigate('Menu')
+                        }}
+                    />
+                </View>
             </Overlay>
         </View >
     );
