@@ -82,7 +82,7 @@ export default function HomeScreen({ navigation }) {
                 </View>
             </LinearGradient >
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: '90%', }} animationType='slide' >
-                <Text>Please Enter Your Address & Info</Text>
+                <Text style={{ fontSize: 25, fontFamily: 'DMSans_400Regular', marginBottom: 10 }}>Enter Your Address & Info</Text>
 
                 <Input
                     label='First Name'
