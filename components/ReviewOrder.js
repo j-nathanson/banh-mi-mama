@@ -9,9 +9,10 @@ import { removeItem } from "../redux/cartSlice";
 export default function ReviewOrderScreen({ navigation }) {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cartReducer.cart)
-    console.log(cart);
+    const totalOrderCost = useSelector(state => state.cartReducer.totalOrderCost)
 
     const renderDirectoryItem = ({ item }) => {
+
         return (
             <ListItem>
                 <Avatar
@@ -29,7 +30,7 @@ export default function ReviewOrderScreen({ navigation }) {
                         size={20}
                         color="red"
                         onPress={() =>
-                            dispatch(removeItem(item.id))
+                            dispatch(removeItem({ id: item.id, totalCost: item.totalCost }))
                         }
                     />
 
@@ -56,7 +57,7 @@ export default function ReviewOrderScreen({ navigation }) {
                 />
             </View>
             <View style={{ flex: .5, marginTop: 'auto' }}>
-                <Text>Delivery in: 15-20 mins</Text>
+                <Text>{totalOrderCost}</Text>
             </View>
 
             <Button
