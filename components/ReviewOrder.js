@@ -11,6 +11,10 @@ export default function ReviewOrderScreen({ navigation }) {
     const cart = useSelector(state => state.cartReducer.cart)
     const totalOrderCost = useSelector(state => state.cartReducer.totalOrderCost)
 
+    if (cart.length === 0) {
+        navigation.navigate('Menu')
+    }
+
     const renderDirectoryItem = ({ item }) => {
 
         return (

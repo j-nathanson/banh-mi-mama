@@ -21,7 +21,6 @@ export const cartReducer = createSlice({
             const totalCost = action.payload.totalCost
             state.cart.splice(index, 1)
             state.totalOrderCost -= totalCost;
-
         }
     },
 })

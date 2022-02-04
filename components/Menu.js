@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Card, Icon, Button } from 'react-native-elements';
-import { View, Text, TouchableHighlight, SectionList, StyleSheet } from 'react-native'; import { useSelector } from 'react-redux'
+import { View, Text, TouchableHighlight, SectionList, StyleSheet, Alert } from 'react-native';
+import { useSelector } from 'react-redux'
 
 export default function MenuScreen({ navigation }) {
 
     const menu = useSelector(state => state.menuReducer.menu);
+    const cart = useSelector(state => state.cartReducer.cart);
     const orderCost = useSelector(state => state.cartReducer.totalOrderCost);
 
     const [color1, setColor1] = useState('#4ee44e');
@@ -137,9 +139,18 @@ export default function MenuScreen({ navigation }) {
 
                 <Button
                     title="Review Order"
-                    onPress={() =>
-                        navigation.navigate('ReviewOrder')
+                    onPress={() => {
+                        console.log(cart)
+                        cart.length !== 0
+                            ? navigation.navigate('ReviewOrder')
+                            : Alert.alert(
+                                "Your bag is empty", " please add some items!",
+
+                            )
+
                     }
+                    }
+
                     icon={{
                         name: 'shopping-basket',
                         type: 'entypo',
