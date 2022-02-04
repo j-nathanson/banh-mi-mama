@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { ListItem, Avatar, Button, } from 'react-native-elements';
+import { View, Text, FlatList, StyleSheet, TouchableHighlight } from 'react-native';
+import { ListItem, Avatar, Button, Icon } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem } from "../redux/cartSlice";
 
@@ -22,12 +22,20 @@ export default function ReviewOrderScreen({ navigation }) {
                 <ListItem.Content>
                     <ListItem.Title>{item.name}</ListItem.Title>
                     <ListItem.Subtitle>Quantity: {item.quantity}</ListItem.Subtitle>
-                    <Button
-                        title="Remove Item"
+
+                    <Icon
+                        name="trash-o"
+                        type="font-awesome"
+                        size={20}
+                        color="red"
                         onPress={() =>
                             dispatch(removeItem(item.id))
                         }
                     />
+
+
+
+
                 </ListItem.Content>
                 <Text>${item.totalCost}</Text>
             </ListItem>
