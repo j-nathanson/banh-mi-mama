@@ -7,6 +7,7 @@ import { removeItem } from "../redux/cartSlice";
 
 
 export default function ReviewOrderScreen({ navigation }) {
+    const dispatch = useDispatch();
     const cart = useSelector(state => state.cartReducer.cart)
     console.log(cart);
 
@@ -21,7 +22,12 @@ export default function ReviewOrderScreen({ navigation }) {
                 <ListItem.Content>
                     <ListItem.Title>{item.name}</ListItem.Title>
                     <ListItem.Subtitle>Quantity: {item.quantity}</ListItem.Subtitle>
-
+                    <Button
+                        title="Remove Item"
+                        onPress={() =>
+                            dispatch(removeItem(item.id))
+                        }
+                    />
                 </ListItem.Content>
                 <Text>${item.totalCost}</Text>
             </ListItem>

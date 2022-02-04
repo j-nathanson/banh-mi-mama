@@ -17,10 +17,8 @@ export const cartReducer = createSlice({
             // console.log(state.cart);
         },
         removeItem: (state, action) => {
-            let index = state.cart.findIndex(item => item.name === action.payload.name)
-            index >= 0 ? state.cart.splice(index, 1) : state.cart
-            console.log(action.payload.name)
-            console.log(state.cart);
+            const index = action.payload
+            state.cart.splice(index, 1)
         }
     },
 })
