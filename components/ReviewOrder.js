@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { ListItem, Avatar, Button, Icon } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem } from "../redux/cartSlice";
@@ -44,7 +44,6 @@ export default function ReviewOrderScreen({ navigation }) {
 
         );
     };
-
 
     return (
         <View style={styles.container}>

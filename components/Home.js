@@ -11,21 +11,28 @@ export default function HomeScreen({ navigation }) {
                 colors={['#e52d27', '#b31217']}
                 style={{ height: '100%', flex: 1, justifyContent: 'center' }}
             >
-                <View style={{ flex: 3, alignItems: 'center', justifyContent: 'flex-end' }}>
+                <View style={{ flex: 2, alignItems: 'center', justifyContent: 'flex-end' }}>
                     <Text style={{ fontFamily: 'LobsterTwo_400Regular_Italic', fontSize: 60, color: 'white' }}>Banh Mi Mama</Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'center' }}>
                     <Image source={require('../assets/images/conical-hat-logo.png')} />
                 </View>
                 <View style={{
-                    flex: 1,
-                    marginBottom: 30,
+                    flex: .4,
                     alignItems: 'center',
-                    justifyContent: 'center'
+                }}>
+                    <Text style={{ fontSize: 30, fontFamily: 'DMSans_400Regular', color: 'white' }}>Choose your order type</Text>
+                </View>
+                <View style={{
+                    flex: .5,
+                    marginBottom: 40,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-around',
                 }}>
 
                     <Button
-                        title="Start Your Order"
+                        title="Pick Up"
                         icon={{
                             name: 'shopping-bag',
                             type: 'entypo',
@@ -37,13 +44,35 @@ export default function HomeScreen({ navigation }) {
                         buttonStyle={{
                             backgroundColor: '#323232',
                             borderColor: 'transparent',
-                            borderWidth: 0,
                             borderRadius: 30,
-                            padding: 15
+
+
 
                         }}
                         containerStyle={{
-                            width: 250,
+                            width: 150,
+
+                        }}
+                        onPress={() => navigation.navigate('Menu')}
+                    />
+                    <Button
+                        title="Delivery"
+                        icon={{
+                            name: 'pedal-bike',
+                            type: 'material',
+                            size: 15,
+                            color: 'white',
+                        }}
+                        iconContainerStyle={{ marginRight: 10 }}
+                        titleStyle={{ fontWeight: '700' }}
+                        buttonStyle={{
+                            backgroundColor: '#323232',
+                            borderColor: 'transparent',
+                            borderRadius: 30,
+
+                        }}
+                        containerStyle={{
+                            width: 150,
 
                         }}
                         onPress={() => navigation.navigate('Menu')}
