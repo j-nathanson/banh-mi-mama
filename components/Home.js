@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { View, Text, Image } from 'react-native';
 import { Button, Overlay, Input, Icon } from 'react-native-elements'
 import { LinearGradient } from 'expo-linear-gradient';
+import { useSelector, useDispatch } from "react-redux";
+import { updateUserProperty } from "../redux/userSlice";
 
 export default function HomeScreen({ navigation }) {
-
+    const dispatch = useDispatch();
     const [visible, setVisible] = useState(false);
 
     const toggleOverlay = () => {
@@ -88,34 +90,40 @@ export default function HomeScreen({ navigation }) {
                     label='First Name'
                     placeholder='Sean'
                     leftIcon={{ type: 'font-awesome', name: 'user-o' }}
+                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'firstName', value: value }))}
                 />
                 <Input
-                    label='First Name'
+                    label='Last Name'
                     placeholder='Nguyen'
                     leftIcon={{ type: 'entypo', name: 'man' }}
+                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'lastName', value: value }))}
                 />
 
                 <Input
                     placeholder='212-687-9082'
                     label='Phone Number'
                     leftIcon={{ type: 'antdesign', name: 'phone' }}
+                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'phone', value: value }))}
                 />
                 <Input
                     label='Email'
                     placeholder='CaPhe365@gmail.com'
                     leftIcon={{ type: 'feather', name: 'mail' }}
+                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'email', value: value }))}
                 />
 
                 <Input
                     placeholder='33 North Front St'
                     label='Street address'
                     leftIcon={{ type: 'font-awesome-5', name: 'house-user' }}
+                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'address', value: value }))}
 
                 />
                 <Input
                     label='Apartment Number'
                     placeholder='6B'
                     leftIcon={{ type: 'material-community', name: 'doorbell' }}
+                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'aptNum', value: value }))}
                 />
                 <View style={{ alignItems: 'center' }}>
                     <Button
