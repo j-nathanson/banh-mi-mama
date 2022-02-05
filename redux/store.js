@@ -5,6 +5,7 @@ import sandwichReducer from './sandwichSlice'
 import userReducer from './userSlice'
 import logger from 'redux-logger'
 
+
 export const store = configureStore({
     reducer: {
         menuReducer,
@@ -13,6 +14,6 @@ export const store = configureStore({
         userReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-    devTools: true
+    devTools: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 })
