@@ -31,8 +31,6 @@ export default function MenuScreen({ navigation }) {
         sectionListRef.current.scrollToLocation({
             sectionIndex: index, itemIndex: 0
         });
-        console.log(newColors);
-
     }
 
 
@@ -127,14 +125,12 @@ export default function MenuScreen({ navigation }) {
                 <Button
                     title="Review Order"
                     onPress={() => {
-                        console.log(cart)
-                        cart.length !== 0
+                        cart.length > 0
                             ? navigation.navigate('ReviewOrder')
                             : Alert.alert(
                                 "Your bag is empty", " please add some items!",
 
                             )
-
                     }
                     }
 
