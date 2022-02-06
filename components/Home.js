@@ -8,11 +8,13 @@ import { updateUserProperty } from "../redux/userSlice";
 export default function HomeScreen({ navigation }) {
     const dispatch = useDispatch();
     const [visible, setVisible] = useState(false);
+    const orderType = useSelector(state => state.userReducer.info.orderType);
 
     const toggleOverlay = () => {
         setVisible(!visible);
     };
 
+    console.log(orderType);
     return (
         <View style={{ flex: 1 }}>
             <LinearGradient
@@ -58,7 +60,10 @@ export default function HomeScreen({ navigation }) {
                             width: 150,
 
                         }}
-                        onPress={() => navigation.navigate('Menu')}
+                        onPress={() => {
+                            dispatch(updateUserProperty({ name: 'orderType', value: 'pick-up' }))
+                            navigation.navigate('Menu')
+                        }}
                     />
                     <Button
                         title="Delivery"
@@ -79,7 +84,10 @@ export default function HomeScreen({ navigation }) {
                             width: 150,
 
                         }}
-                        onPress={toggleOverlay}
+                        onPress={() => {
+                            dispatch(updateUserProperty({ name: 'orderType', value: 'delivery' }));
+                            toggleOverlay();
+                        }}
                     />
                 </View>
             </LinearGradient >

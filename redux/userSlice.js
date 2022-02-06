@@ -7,8 +7,10 @@ const initialState = {
         phone: '',
         email: '',
         address: '',
-        aptNum: ''
-    }
+        aptNum: '',
+        orderType: ''
+    },
+
 }
 
 export const userReducer = createSlice({
