@@ -9,6 +9,8 @@ export default function MenuScreen({ navigation }) {
     const cart = useSelector(state => state.cartReducer.cart);
     const orderCost = useSelector(state => state.cartReducer.totalOrderCost);
 
+    const sectionListRef = useRef(null);
+
     const [colors, setColors] = useState(
         {
             sandwiches: '#4ee44e',
@@ -33,7 +35,6 @@ export default function MenuScreen({ navigation }) {
 
     }
 
-    const sectionListRef = useRef(null);
 
     const renderSectionHeader = ({ section: { title } }) => (
         <View style={styles.headerContainer}>
