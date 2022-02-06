@@ -100,7 +100,7 @@ export default function HomeScreen({ navigation }) {
                 />
 
                 <Input
-                    placeholder='212-687-9082'
+                    placeholder='xxx-xxx-xxxx'
                     label='Phone Number'
                     leftIcon={{ type: 'antdesign', name: 'phone' }}
                     onChangeText={(value) => dispatch(updateUserProperty({ name: 'phone', value: value }))}
