@@ -14,6 +14,31 @@ export default function MenuScreen({ navigation }) {
     const [color3, setColor3] = useState('#3e5d18');
     const [color4, setColor4] = useState('#3e5d18');
 
+
+    const [colors, setColors] = useState(
+        {
+            sandwiches: '#4ee44e',
+            rice: '#3e5d18',
+            sides: '#3e5d18',
+            drinks: '#3e5d18'
+        }
+    );
+
+    const changeColor = (button, index) => {
+        const newColors = { ...colors };
+        for (const prop in newColors) {
+            newColors[prop] = '#3e5d18'
+        };
+        newColors[button] = '#4ee44e';
+        setColors(newColors);
+
+        sectionListRef.current.scrollToLocation({
+            sectionIndex: index, itemIndex: 0
+        });
+        console.log(newColors);
+
+    }
+
     const sectionListRef = useRef(null);
 
     const renderSectionHeader = ({ section: { title } }) => (
@@ -61,69 +86,36 @@ export default function MenuScreen({ navigation }) {
                     <Icon
                         name='hamburger'
                         type='font-awesome-5'
-                        color={color1}
+                        color={colors.sandwiches}
                         raised
                         size={30}
-                        onPress={(e) => {
-                            {
-                                sectionListRef.current.scrollToLocation({
-                                    sectionIndex: 0, itemIndex: 0
-                                });
-                                setColor1('#4ee44e');
-                                setColor2('#3e5d18');
-                                setColor3('#3e5d18');
-                                setColor4('#3e5d18');
-                            }
-                        }}
+                        onPress={() => changeColor('sandwiches', 0)
+                        }
                     />
                 </TouchableHighlight>
                 <Icon
                     name='rice'
                     type='material-community'
-                    color={color2}
+                    color={colors.rice}
                     raised
                     size={30}
-                    onPress={() => {
-                        sectionListRef.current.scrollToLocation({
-                            sectionIndex: 1, itemIndex: 0
-                        });
-                        setColor1('#3e5d18');
-                        setColor2('#4ee44e');
-                        setColor3('#3e5d18');
-                        setColor4('#3e5d18');
-                    }}
+                    onPress={() => changeColor('rice', 1)}
                 />
                 <Icon
                     name='drumstick-bite'
                     type='font-awesome-5'
-                    color={color3}
+                    color={colors.sides}
                     raised
                     size={30}
-                    onPress={() => {
-                        sectionListRef.current.scrollToLocation({
-                            sectionIndex: 2, itemIndex: 0
-                        });
-                        setColor1('#3e5d18');
-                        setColor2('#3e5d18');
-                        setColor3('#4ee44e');
-                        setColor4('#3e5d18');
-                    }}
+                    onPress={() => changeColor('sides', 2)}
                 />
                 <Icon
                     name='local-drink'
                     type='material'
-                    color={color4}
+                    color={colors.drinks}
                     raised
                     size={30}
-                    onPress={() => {
-                        sectionListRef.current.scrollToLocation({
-                            sectionIndex: 3, itemIndex: 0
-                        });
-                        setColor1('#3e5d18');
-                        setColor2('#3e5d18');
-                        setColor3('#3e5d18');
-                        setColor4('#4ee44e');
-                    }}
+                    onPress={() => changeColor('drinks', 3)}
                 />
             </View>
             <SectionList

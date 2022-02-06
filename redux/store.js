@@ -14,6 +14,5 @@ export const store = configureStore({
         userReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-    devTools: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 })
