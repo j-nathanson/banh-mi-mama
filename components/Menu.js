@@ -9,12 +9,6 @@ export default function MenuScreen({ navigation }) {
     const cart = useSelector(state => state.cartReducer.cart);
     const orderCost = useSelector(state => state.cartReducer.totalOrderCost);
 
-    const [color1, setColor1] = useState('#4ee44e');
-    const [color2, setColor2] = useState('#3e5d18');
-    const [color3, setColor3] = useState('#3e5d18');
-    const [color4, setColor4] = useState('#3e5d18');
-
-
     const [colors, setColors] = useState(
         {
             sandwiches: '#4ee44e',
