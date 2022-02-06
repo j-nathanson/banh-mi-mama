@@ -14,7 +14,6 @@ export default function HomeScreen({ navigation }) {
         setVisible(!visible);
     };
 
-    console.log(orderType);
     return (
         <View style={{ flex: 1 }}>
             <LinearGradient
@@ -61,8 +60,8 @@ export default function HomeScreen({ navigation }) {
 
                         }}
                         onPress={() => {
+                            toggleOverlay();
                             dispatch(updateUserProperty({ name: 'orderType', value: 'pick-up' }))
-                            navigation.navigate('Menu')
                         }}
                     />
                     <Button
@@ -92,7 +91,7 @@ export default function HomeScreen({ navigation }) {
                 </View>
             </LinearGradient >
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: '90%', }} animationType='slide' >
-                <Text style={{ fontSize: 25, fontFamily: 'DMSans_400Regular', marginBottom: 10 }}>Enter Your Address & Info</Text>
+                <Text style={{ fontSize: 25, fontFamily: 'DMSans_400Regular', marginBottom: 10, textAlign: 'center' }}>Enter Your Info!</Text>
 
                 <Input
                     label='First Name'
@@ -120,19 +119,24 @@ export default function HomeScreen({ navigation }) {
                     onChangeText={(value) => dispatch(updateUserProperty({ name: 'email', value: value }))}
                 />
 
-                <Input
-                    placeholder='33 North Front St'
-                    label='Street address'
-                    leftIcon={{ type: 'font-awesome-5', name: 'house-user' }}
-                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'address', value: value }))}
+                {orderType === 'delivery' ?
+                    <>
+                        <Input
+                            placeholder='33 North Front St'
+                            label='Street address'
+                            leftIcon={{ type: 'font-awesome-5', name: 'house-user' }}
+                            onChangeText={(value) => dispatch(updateUserProperty({ name: 'address', value: value }))}
 
-                />
-                <Input
-                    label='Apartment Number'
-                    placeholder='6B'
-                    leftIcon={{ type: 'material-community', name: 'doorbell' }}
-                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'aptNum', value: value }))}
-                />
+                        />
+                        <Input
+                            label='Apartment Number'
+                            placeholder='6B'
+                            leftIcon={{ type: 'material-community', name: 'doorbell' }}
+                            onChangeText={(value) => dispatch(updateUserProperty({ name: 'aptNum', value: value }))}
+                        />
+                    </>
+                    : <View />
+                }
                 <View style={{ alignItems: 'center' }}>
                     <Button
                         title="Start Your Order"
