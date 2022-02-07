@@ -32,7 +32,11 @@ export default function Main() {
                     headerTitleStyle: styles.headerTitle,
                     headerTitleAlign: 'center'
                 }} />
-            <Stack.Screen name='AddCard' component={AddCard} />
+            <Stack.Screen name='AddCard' component={AddCard} options={{
+                title: 'Add Card',
+                headerTitleStyle: styles.headerTitle,
+                headerTitleAlign: 'center'
+            }} />
         </Stack.Navigator>
     )
 }
