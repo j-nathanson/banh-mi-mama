@@ -36,11 +36,7 @@ export default function CheckoutScreen({ navigation }) {
             <View style={{ flex: 5 }}>
                 <Text>name name number</Text>
             </View>
-
-
-
         </View >
-
     );
 }
 
@@ -57,14 +53,17 @@ const styles = new StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
-    contact: {
-
-    },
     contactHeader: {
-        fontFamily: 'DMSans_700Bold', fontSize: 20
+        fontFamily: 'DMSans_700Bold',
+        fontSize: 20
     },
     contactInfo: {
-        color: '#44484a', fontFamily: 'DMSans_400Regular', fontSize: 15
+        color: '#3e5d18',
+        fontFamily: 'DMSans_400Regular',
+        fontSize: 15
     },
-    editInfo: { alignSelf: 'center', padding: 5 }
+    editInfo: {
+        alignSelf: 'center',
+        padding: 5
+    }
 })

@@ -127,13 +127,8 @@ export default function MenuScreen({ navigation }) {
                     onPress={() => {
                         cart.length > 0
                             ? navigation.navigate('ReviewOrder')
-                            : Alert.alert(
-                                "Your bag is empty", " please add some items!",
-
-                            )
-                    }
-                    }
-
+                            : Alert.alert("Your bag is empty", " please add some items!",)
+                    }}
                     icon={{
                         name: 'shopping-basket',
                         type: 'entypo',
