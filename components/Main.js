@@ -25,7 +25,12 @@ export default function Main() {
                     headerTitleStyle: styles.headerTitle,
                     headerTitleAlign: 'center'
                 }} />
-            <Stack.Screen name='Checkout' component={CheckoutScreen} />
+            <Stack.Screen name='Checkout' component={CheckoutScreen}
+                options={{
+                    title: 'Checkout',
+                    headerTitleStyle: styles.headerTitle,
+                    headerTitleAlign: 'center'
+                }} />
         </Stack.Navigator>
     )
 }
