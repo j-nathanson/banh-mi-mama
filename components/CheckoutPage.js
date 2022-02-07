@@ -9,6 +9,7 @@ import { updateUserProperty } from "../redux/userSlice";
 export default function CheckoutScreen({ navigation }) {
     const dispatch = useDispatch();
 
+    const totalOrderCost = useSelector(state => state.cartReducer.totalOrderCost)
     const user = useSelector(state => state.userReducer.info)
     const { address, aptNum, email, firstName, lastName, orderType, phone } = user;
 
@@ -21,9 +22,9 @@ export default function CheckoutScreen({ navigation }) {
 
 
     return (
-        <View style={{ flex: 1, }}>
+        <View style={{ flex: 1 }}>
             <View style={styles.infoSection}>
-                <Text style={styles.total}>Your total today: $30</Text>
+                <Text style={styles.total}>Your total today: ${totalOrderCost}</Text>
                 <View style={styles.userInfo}>
                     <View style={styles.contact}>
                         <Text style={styles.contactHeader}>
@@ -42,8 +43,40 @@ export default function CheckoutScreen({ navigation }) {
                     />
                 </View>
             </View>
-            <View style={{ flex: 5 }}>
-                <Text>name name number</Text>
+            <View style={styles.creditContainer}>
+                <View>
+                    <Text style={styles.creditHeader}>Select a credit card</Text>
+                    <View style={styles.buttonSection}>
+                        <Icon
+                            name='credit-card-outline'
+                            type='material-community'
+                            color='black'
+                            size={30}
+                            raised
+                            onPress={() => toggleOverlay()}
+                        />
+                        <Text style={styles.buttonSectionText}>Saved Cards</Text>
+                    </View>
+                    <View style={styles.buttonSection}>
+                        <Icon
+                            name='credit-card-plus-outline'
+                            type='material-community'
+                            color='#517fa4'
+                            size={30}
+                            raised
+                            onPress={() => toggleOverlay()}
+                        />
+                        <Text style={styles.buttonSectionText}>Add a Card</Text>
+                    </View>
+                </View>
+                <Button
+                    title='pay'
+                    containerStyle={{ marginTop: 'auto' }}
+                >
+
+
+                </Button>
+
             </View>
 
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: '90%', }} animationType='slide' >
@@ -125,7 +158,11 @@ export default function CheckoutScreen({ navigation }) {
 
 const styles = new StyleSheet.create({
     infoSection: {
-        flex: 2, justifyContent: 'space-around', padding: 20
+        flex: 2,
+        justifyContent: 'space-around',
+        backgroundColor: 'white',
+        padding: 15,
+        margin: 15
     },
     total: {
         fontFamily: 'DMSans_700Bold',
@@ -154,5 +191,29 @@ const styles = new StyleSheet.create({
         fontFamily: 'DMSans_400Regular',
         marginBottom: 10,
         textAlign: 'center'
+    },
+    creditContainer: {
+        flex: 4,
+        backgroundColor: 'white',
+        padding: 15,
+        marginTop: 0,
+        marginHorizontal: 15
+    },
+    creditHeader: {
+        fontFamily: 'DMSans_700Bold',
+        fontSize: 25,
+        textAlign: 'center',
+        marginBottom: 20
+    },
+    buttonSection: {
+        flexDirection: 'row',
+        width: '100%'
+    },
+    buttonSectionText: {
+        alignSelf: 'center',
+        fontFamily: 'DMSans_400Regular',
+        fontSize: 20,
+        marginLeft: 10
+
     }
 })
