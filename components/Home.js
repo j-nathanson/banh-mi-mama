@@ -8,8 +8,8 @@ import { updateUserProperty } from "../redux/userSlice";
 export default function HomeScreen({ navigation }) {
     const dispatch = useDispatch();
     const [visible, setVisible] = useState(false);
-    const orderType = useSelector(state => state.userReducer.info.orderType);
-
+    const user = useSelector(state => state.userReducer.info)
+    const { address, aptNum, email, firstName, lastName, orderType, phone } = user;
     const toggleOverlay = () => {
         setVisible(!visible);
     };
@@ -98,12 +98,15 @@ export default function HomeScreen({ navigation }) {
                     placeholder='Sean'
                     leftIcon={{ type: 'font-awesome', name: 'user-o' }}
                     onChangeText={(value) => dispatch(updateUserProperty({ name: 'firstName', value: value }))}
+                    value={firstName}
+
                 />
                 <Input
                     label='Last Name'
                     placeholder='Nguyen'
                     leftIcon={{ type: 'entypo', name: 'man' }}
                     onChangeText={(value) => dispatch(updateUserProperty({ name: 'lastName', value: value }))}
+                    value={lastName}
                 />
 
                 <Input
@@ -111,12 +114,14 @@ export default function HomeScreen({ navigation }) {
                     label='Phone Number'
                     leftIcon={{ type: 'antdesign', name: 'phone' }}
                     onChangeText={(value) => dispatch(updateUserProperty({ name: 'phone', value: value }))}
+                    value={phone}
                 />
                 <Input
                     label='Email'
                     placeholder='CaPhe365@gmail.com'
                     leftIcon={{ type: 'feather', name: 'mail' }}
                     onChangeText={(value) => dispatch(updateUserProperty({ name: 'email', value: value }))}
+                    value={email}
                 />
 
                 {orderType === 'delivery' ?
@@ -126,6 +131,7 @@ export default function HomeScreen({ navigation }) {
                             label='Street address'
                             leftIcon={{ type: 'font-awesome-5', name: 'house-user' }}
                             onChangeText={(value) => dispatch(updateUserProperty({ name: 'address', value: value }))}
+                            value={address}
 
                         />
                         <Input
@@ -133,6 +139,7 @@ export default function HomeScreen({ navigation }) {
                             placeholder='6B'
                             leftIcon={{ type: 'material-community', name: 'doorbell' }}
                             onChangeText={(value) => dispatch(updateUserProperty({ name: 'aptNum', value: value }))}
+                            value={aptNum}
                         />
                     </>
                     : <View />

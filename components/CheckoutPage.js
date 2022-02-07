@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from 'react-native';
 import { Button, Icon, Overlay, Input } from "react-native-elements";
+import * as Notifications from 'expo-notifications';
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserProperty } from "../redux/userSlice";
 
@@ -19,6 +20,27 @@ export default function CheckoutScreen({ navigation }) {
     const toggleOverlay = () => {
         setVisible(!visible);
     };
+
+    const presentLocalNotification = async (firstName) => {
+        function sendNotification() {
+            Notifications.setNotificationHandler({
+                handleNotification: async () => ({
+                    shouldShowAlert: true
+                })
+            });
+
+            Notifications.scheduleNotificationAsync({
+                content: {
+                    title: `Thank You for Your Order ${firstName}`,
+                    body: `We\'ll start working on your meal!`
+                },
+                trigger: null
+            });
+        }
+
+        sendNotification();
+        navigation.navigate('Home')
+    }
 
 
     return (
@@ -72,6 +94,7 @@ export default function CheckoutScreen({ navigation }) {
                 <Button
                     title='pay'
                     containerStyle={{ marginTop: 'auto' }}
+                    onPress={() => presentLocalNotification(firstName)}
                 >
 
 
@@ -113,7 +136,7 @@ export default function CheckoutScreen({ navigation }) {
                 {orderType === 'delivery' ?
                     <>
                         <Input
-                            placeholder='33 North Front St'
+                            label='Address'
                             value={address}
                             leftIcon={{ type: 'font-awesome-5', name: 'house-user' }}
                             onChangeText={(value) => dispatch(updateUserProperty({ name: 'address', value: value }))}
