@@ -7,7 +7,7 @@ import ReviewOrderScreen from './ReviewOrder';
 import CheckoutScreen from './CheckoutPage';
 import MenuItemScreen from './MenuItem';
 import AddCard from './AddCard';
-import SavedCards from './SavedCards';
+
 
 const Stack = createStackNavigator();
 
@@ -38,11 +38,7 @@ export default function Main() {
                 headerTitleStyle: styles.headerTitle,
                 headerTitleAlign: 'center'
             }} />
-            <Stack.Screen name='SavedCards' component={SavedCards} options={{
-                title: 'Saved Card',
-                headerTitleStyle: styles.headerTitle,
-                headerTitleAlign: 'center'
-            }} />
+
         </Stack.Navigator>
     )
 }

@@ -43,12 +43,6 @@ export default function CheckoutScreen({ navigation }) {
         navigation.navigate('Home');
     }
 
-    SecureStore.getItemAsync('2')
-        .then(userdata => {
-            const ccInfo = JSON.parse(userdata);
-            console.log(ccInfo)
-        });
-
 
     return (
         <View style={{ flex: 1 }}>
@@ -82,7 +76,7 @@ export default function CheckoutScreen({ navigation }) {
                             color='black'
                             size={30}
                             raised
-                            onPress={() => navigation.navigate('SavedCards')}
+
                         />
                         <Text style={styles.buttonSectionText}>Saved Cards</Text>
                     </View>

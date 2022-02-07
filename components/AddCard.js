@@ -15,7 +15,7 @@ export default function AddCard() {
     const [zipCode, setZipCode] = useState('');
     const [ccv, setCCV] = useState('');
     const creditIds = useSelector(state => state.userReducer.info.creditIds);
-    const id = creditIds.length;
+    const id = creditIds.length.toString();
 
     console.log(typeof (creditIds.length.toString()))
     console.log(creditIds)
