@@ -4,6 +4,7 @@ import { Button, Icon, Overlay, Input } from "react-native-elements";
 import * as Notifications from 'expo-notifications';
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserProperty } from "../redux/userSlice";
+import * as SecureStore from 'expo-secure-store';
 
 
 
@@ -39,8 +40,14 @@ export default function CheckoutScreen({ navigation }) {
         }
 
         sendNotification();
-        navigation.navigate('Home')
+        navigation.navigate('Home');
     }
+
+    SecureStore.getItemAsync('2')
+        .then(userdata => {
+            const ccInfo = JSON.parse(userdata);
+            console.log(ccInfo)
+        });
 
 
     return (
@@ -75,7 +82,7 @@ export default function CheckoutScreen({ navigation }) {
                             color='black'
                             size={30}
                             raised
-                            onPress={() => toggleOverlay()}
+                            onPress={() => navigation.navigate('SavedCards')}
                         />
                         <Text style={styles.buttonSectionText}>Saved Cards</Text>
                     </View>

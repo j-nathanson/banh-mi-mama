@@ -8,7 +8,8 @@ const initialState = {
         email: '',
         address: '',
         aptNum: '',
-        orderType: ''
+        orderType: '',
+        creditIds: []
     },
 
 }
@@ -22,10 +23,15 @@ export const userReducer = createSlice({
             const value = action.payload.value;
             state.info[property] = value
             console.log(state.info)
+        },
+        addCreditCard: (state, action) => {
+            const id = action.payload;
+            state.info.creditIds.push(id);
+            console.log(state.info.creditIds)
         }
     },
 })
 
-export const { updateUserProperty } = userReducer.actions
+export const { updateUserProperty, addCreditCard } = userReducer.actions
 
 export default userReducer.reducer
