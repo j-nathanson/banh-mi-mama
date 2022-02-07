@@ -6,6 +6,7 @@ import MenuScreen from './Menu';
 import ReviewOrderScreen from './ReviewOrder';
 import CheckoutScreen from './CheckoutPage';
 import MenuItemScreen from './MenuItem';
+import AddCard from './AddCard';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,7 @@ export default function Main() {
                     headerTitleStyle: styles.headerTitle,
                     headerTitleAlign: 'center'
                 }} />
+            <Stack.Screen name='AddCard' component={AddCard} />
         </Stack.Navigator>
     )
 }

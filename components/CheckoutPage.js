@@ -86,7 +86,7 @@ export default function CheckoutScreen({ navigation }) {
                             color='#517fa4'
                             size={30}
                             raised
-                            onPress={() => toggleOverlay()}
+                            onPress={() => navigation.navigate('AddCard')}
                         />
                         <Text style={styles.buttonSectionText}>Add a Card</Text>
                     </View>
