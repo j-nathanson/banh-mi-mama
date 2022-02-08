@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from 'react-native';
 import { Button, Icon, Overlay, Input } from "react-native-elements";
 import * as Notifications from 'expo-notifications';
@@ -9,11 +9,17 @@ import * as SecureStore from 'expo-secure-store';
 
 
 export default function CheckoutScreen({ navigation }) {
+
+    const creditIds = useSelector(state => state.userReducer.info.creditIds);
+
     const dispatch = useDispatch();
 
     const totalOrderCost = useSelector(state => state.cartReducer.totalOrderCost)
     const user = useSelector(state => state.userReducer.info)
     const { address, aptNum, email, firstName, lastName, orderType, phone } = user;
+
+    const [username, setUsername] = useState('');
+    const [endDigits, setEndDigits] = useState('');
 
 
     const [visible, setVisible] = useState(false);
@@ -42,6 +48,19 @@ export default function CheckoutScreen({ navigation }) {
         sendNotification();
         navigation.navigate('Home');
     }
+    useEffect(() => {
+        SecureStore.getItemAsync('creditCard')
+            .then(userdata => {
+                const userinfo = JSON.parse(userdata);
+
+                setUsername(userinfo.nameOnCard);
+                setEndDigits(userinfo.creditNum.substr(-4));
+                console.log("username", username);
+                console.log("credit card", endDigits);
+
+            });
+    })
+
 
 
     return (
@@ -68,18 +87,22 @@ export default function CheckoutScreen({ navigation }) {
             </View>
             <View style={styles.creditContainer}>
                 <View>
-                    <Text style={styles.creditHeader}>Select a credit card</Text>
-                    <View style={styles.buttonSection}>
-                        <Icon
-                            name='credit-card-outline'
-                            type='material-community'
-                            color='black'
-                            size={30}
-                            raised
+                    <Text style={styles.creditHeader}>Payment</Text>
 
-                        />
-                        <Text style={styles.buttonSectionText}>Saved Cards</Text>
-                    </View>
+                    {creditIds.length > 0 ?
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 10, marginBottom: 10 }}>
+                            <Icon
+                                name='credit-card-outline'
+                                type='material-community'
+                                color='#3e5d18'
+                                size={30}
+                                containerStyle={{ marginRight: 20 }}
+                            />
+                            <Text style={styles.creditCardInfo}>{username} </Text>
+                            <Text style={styles.creditCardInfo}> •••• •••• •••• {endDigits}</Text>
+                        </View>
+                        : <View />}
+
                     <View style={styles.buttonSection}>
                         <Icon
                             name='credit-card-plus-outline'
@@ -92,14 +115,14 @@ export default function CheckoutScreen({ navigation }) {
                         <Text style={styles.buttonSectionText}>Add a Card</Text>
                     </View>
                 </View>
-                <Button
-                    title='pay'
-                    containerStyle={{ marginTop: 'auto' }}
-                    onPress={() => presentLocalNotification(firstName)}
-                >
-
-
-                </Button>
+                {creditIds.length &&
+                    <Button
+                        title='pay'
+                        containerStyle={{ marginTop: 'auto' }}
+                        onPress={() => presentLocalNotification(firstName)}
+                    >
+                    </Button>
+                }
 
             </View>
 
@@ -202,7 +225,7 @@ const styles = new StyleSheet.create({
         fontSize: 20
     },
     contactInfo: {
-        color: '#3e5d18',
+        color: '#44484a',
         fontFamily: 'DMSans_400Regular',
         fontSize: 15
     },
@@ -239,5 +262,9 @@ const styles = new StyleSheet.create({
         fontSize: 20,
         marginLeft: 10
 
+    },
+    creditCardInfo: {
+        fontFamily: 'DMSans_400Regular',
+        fontSize: 15
     }
 })
