@@ -145,7 +145,8 @@ export default function MenuScreen({ navigation }) {
                         marginBottom: 5,
                         marginTop: 5
                     }}
-                    titleStyle={{ marginHorizontal: 10, color: 'black' }}
+                    titleStyle={{ marginHorizontal: 10, color: 'black', fontFamily: 'DMSans_400Regular', }}
+
                 />
             </View>
         </View >

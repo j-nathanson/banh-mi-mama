@@ -115,10 +115,11 @@ export default function CheckoutScreen({ navigation }) {
                 </View>
 
                 <Button
-                    title='pay'
+                    title='Pay'
                     disabled={payVisible}
-                    containerStyle={{ marginTop: 'auto' }}
+                    containerStyle={{ marginTop: 'auto', borderRadius: 30, }}
                     onPress={() => presentLocalNotification(firstName)}
+                    titleStyle={{ fontFamily: 'DMSans_400Regular', }}
                 >
                 </Button>
             </View>

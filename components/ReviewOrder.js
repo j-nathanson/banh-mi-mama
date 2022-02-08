@@ -71,6 +71,9 @@ export default function ReviewOrderScreen({ navigation }) {
                 buttonStyle={{
                     backgroundColor: '#3e5d18'
                 }}
+                titleStyle={{
+                    fontFamily: 'DMSans_400Regular',
+                }}
             />
         </View>
     );

@@ -10,6 +10,8 @@ export default function HomeScreen({ navigation }) {
     const [visible, setVisible] = useState(false);
     const user = useSelector(state => state.userReducer.info)
     const { address, aptNum, email, firstName, lastName, orderType, phone } = user;
+    const regex = /^[a-zA-Z]+$/
+
     const toggleOverlay = () => {
         setVisible(!visible);
     };
@@ -39,7 +41,9 @@ export default function HomeScreen({ navigation }) {
                             color: 'white',
                         }}
                         iconContainerStyle={{ marginRight: 10 }}
-                        titleStyle={{ fontWeight: '700' }}
+                        titleStyle={{
+                            fontFamily: 'DMSans_400Regular',
+                        }}
                         buttonStyle={styles.typeButton}
                         containerStyle={styles.typeContainer}
                         onPress={() => {
@@ -56,7 +60,9 @@ export default function HomeScreen({ navigation }) {
                             color: 'white',
                         }}
                         iconContainerStyle={{ marginRight: 10 }}
-                        titleStyle={{ fontWeight: '700' }}
+                        titleStyle={{
+                            fontFamily: 'DMSans_400Regular',
+                        }}
                         buttonStyle={styles.typeButton}
                         containerStyle={styles.typeContainer}
                         onPress={() => {
@@ -77,7 +83,6 @@ export default function HomeScreen({ navigation }) {
                         value={firstName}
                         labelStyle={styles.label}
                         inputStyle={styles.input}
-
 
                     />
                     <Input
@@ -153,6 +158,7 @@ export default function HomeScreen({ navigation }) {
                                 width: 200,
 
                             }}
+
                             onPress={() => {
                                 toggleOverlay()
                                 navigation.navigate('Menu')

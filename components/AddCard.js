@@ -1,5 +1,5 @@
 
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Input, Button, CheckBox } from 'react-native-elements';
 import React, { useState } from 'react';
 import * as SecureStore from 'expo-secure-store';
@@ -62,30 +62,40 @@ export default function AddCard({ navigation }) {
                 placeholder='CVV'
                 onChangeText={(value) => setCCV(value)}
             />
-            <Button
-                title='Cancel'
-                buttonStyle={{
-                    backgroundColor: '#323232',
-                    borderColor: 'transparent',
-                    borderRadius: 30,
-                }}
-                containerStyle={{
-                    width: 200,
-                }}
-                onPress={() => navigation.navigate('Checkout')}
-            />
-            <Button
-                title='Add Card'
-                buttonStyle={{
-                    backgroundColor: '#323232',
-                    borderColor: 'transparent',
-                    borderRadius: 30,
-                }}
-                containerStyle={{
-                    width: 200,
-                }}
-                onPress={() => addCardToSecureStore()}
-            />
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                <Button
+                    title='Cancel'
+                    buttonStyle={{
+                        backgroundColor: 'red',
+                        borderColor: 'transparent',
+                        borderRadius: 30,
+                    }}
+                    containerStyle={{
+                        width: 150,
+                    }}
+                    titleStyle={{
+                        fontFamily: 'DMSans_400Regular',
+                    }}
+                    onPress={() => navigation.navigate('Checkout')}
+                />
+                <Button
+                    title='Add Card'
+                    buttonStyle={{
+                        backgroundColor: '#3e5d18',
+                        borderColor: 'transparent',
+                        borderRadius: 30,
+
+                    }}
+                    titleStyle={{
+                        fontFamily: 'DMSans_400Regular',
+                    }}
+                    containerStyle={{
+                        width: 150,
+                    }}
+                    onPress={() => addCardToSecureStore()}
+                />
+
+            </View>
         </View>
     );
 
