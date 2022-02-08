@@ -6,7 +6,7 @@ import * as SecureStore from 'expo-secure-store';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCreditCard } from '../redux/userSlice';
 
-export default function AddCard() {
+export default function AddCard({ navigation }) {
 
     const dispatch = useDispatch();
     const [creditNum, setCreditNum] = useState('');
@@ -30,6 +30,8 @@ export default function AddCard() {
                 ccv
             })
         ).catch(error => console.log('Could not save user credit cart', error));
+
+        navigation.navigate('Checkout')
     }
 
 
@@ -61,17 +63,6 @@ export default function AddCard() {
                 onChangeText={(value) => setCCV(value)}
             />
             <Button
-                title='Continue with Payment'
-                buttonStyle={{
-                    backgroundColor: '#323232',
-                    borderColor: 'transparent',
-                    borderRadius: 30,
-                }}
-                containerStyle={{
-                    width: 200,
-                }}
-            />
-            <Button
                 title='Cancel'
                 buttonStyle={{
                     backgroundColor: '#323232',
@@ -81,9 +72,10 @@ export default function AddCard() {
                 containerStyle={{
                     width: 200,
                 }}
+                onPress={() => navigation.navigate('Checkout')}
             />
             <Button
-                title='add to the store'
+                title='Add Card'
                 buttonStyle={{
                     backgroundColor: '#323232',
                     borderColor: 'transparent',
