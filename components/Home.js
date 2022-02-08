@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 import { Button, Overlay, Input, Icon } from 'react-native-elements'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector, useDispatch } from "react-redux";
@@ -15,31 +15,21 @@ export default function HomeScreen({ navigation }) {
     };
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
             <LinearGradient
                 colors={['#e52d27', '#b31217']}
-                style={{ height: '100%', flex: 1, justifyContent: 'center' }}
+                style={styles.linearGradient}
             >
-                <View style={{ flex: 2, alignItems: 'center', justifyContent: 'flex-end' }}>
-                    <Text style={{ fontFamily: 'LobsterTwo_400Regular_Italic', fontSize: 60, color: 'white' }}>Banh Mi Mama</Text>
+                <View style={styles.brandContainer}>
+                    <Text style={styles.brandText}>Banh Mi Mama</Text>
                 </View>
-                <View style={{ flex: 2, alignItems: 'center' }}>
+                <View style={styles.logoContainer}>
                     <Image source={require('../assets/images/conical-hat-logo.png')} />
                 </View>
-                <View style={{
-                    flex: .4,
-                    alignItems: 'center',
-                }}>
-                    <Text style={{ fontSize: 30, fontFamily: 'DMSans_400Regular', color: 'white' }}>Choose your order type</Text>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.titleText}>Choose your order type</Text>
                 </View>
-                <View style={{
-                    flex: .5,
-                    marginBottom: 40,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-around',
-                }}>
-
+                <View style={styles.buttonGroup}>
                     <Button
                         title="Pick Up"
                         icon={{
@@ -50,15 +40,8 @@ export default function HomeScreen({ navigation }) {
                         }}
                         iconContainerStyle={{ marginRight: 10 }}
                         titleStyle={{ fontWeight: '700' }}
-                        buttonStyle={{
-                            backgroundColor: '#323232',
-                            borderColor: 'transparent',
-                            borderRadius: 30,
-                        }}
-                        containerStyle={{
-                            width: 150,
-
-                        }}
+                        buttonStyle={styles.typeButton}
+                        containerStyle={styles.typeContainer}
                         onPress={() => {
                             toggleOverlay();
                             dispatch(updateUserProperty({ name: 'orderType', value: 'pick-up' }))
@@ -74,15 +57,8 @@ export default function HomeScreen({ navigation }) {
                         }}
                         iconContainerStyle={{ marginRight: 10 }}
                         titleStyle={{ fontWeight: '700' }}
-                        buttonStyle={{
-                            backgroundColor: '#323232',
-                            borderColor: 'transparent',
-                            borderRadius: 30,
-                        }}
-                        containerStyle={{
-                            width: 150,
-
-                        }}
+                        buttonStyle={styles.typeButton}
+                        containerStyle={styles.typeContainer}
                         onPress={() => {
                             dispatch(updateUserProperty({ name: 'orderType', value: 'delivery' }));
                             toggleOverlay();
@@ -92,14 +68,16 @@ export default function HomeScreen({ navigation }) {
             </LinearGradient >
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: '90%', }} animationType='slide' >
                 <ScrollView>
-                    <Text style={{ fontSize: 25, fontFamily: 'DMSans_400Regular', marginBottom: 10, textAlign: 'center' }}>Enter Your Info!</Text>
-
+                    <Text style={styles.modalHeader}>Enter Your Info!</Text>
                     <Input
                         label='First Name'
                         placeholder='Sean'
                         leftIcon={{ type: 'font-awesome', name: 'user-o' }}
                         onChangeText={(value) => dispatch(updateUserProperty({ name: 'firstName', value: value }))}
                         value={firstName}
+                        labelStyle={styles.label}
+                        inputStyle={styles.input}
+
 
                     />
                     <Input
@@ -108,6 +86,8 @@ export default function HomeScreen({ navigation }) {
                         leftIcon={{ type: 'entypo', name: 'man' }}
                         onChangeText={(value) => dispatch(updateUserProperty({ name: 'lastName', value: value }))}
                         value={lastName}
+                        labelStyle={styles.label}
+                        inputStyle={styles.input}
                     />
 
                     <Input
@@ -116,6 +96,8 @@ export default function HomeScreen({ navigation }) {
                         leftIcon={{ type: 'antdesign', name: 'phone' }}
                         onChangeText={(value) => dispatch(updateUserProperty({ name: 'phone', value: value }))}
                         value={phone}
+                        labelStyle={styles.label}
+                        inputStyle={styles.input}
                     />
                     <Input
                         label='Email'
@@ -123,6 +105,8 @@ export default function HomeScreen({ navigation }) {
                         leftIcon={{ type: 'feather', name: 'mail' }}
                         onChangeText={(value) => dispatch(updateUserProperty({ name: 'email', value: value }))}
                         value={email}
+                        labelStyle={styles.label}
+                        inputStyle={styles.input}
                     />
 
                     {orderType === 'delivery' ?
@@ -133,6 +117,8 @@ export default function HomeScreen({ navigation }) {
                                 leftIcon={{ type: 'font-awesome-5', name: 'house-user' }}
                                 onChangeText={(value) => dispatch(updateUserProperty({ name: 'address', value: value }))}
                                 value={address}
+                                labelStyle={styles.label}
+                                inputStyle={styles.input}
 
                             />
                             <Input
@@ -141,6 +127,8 @@ export default function HomeScreen({ navigation }) {
                                 leftIcon={{ type: 'material-community', name: 'doorbell' }}
                                 onChangeText={(value) => dispatch(updateUserProperty({ name: 'aptNum', value: value }))}
                                 value={aptNum}
+                                labelStyle={styles.label}
+                                inputStyle={styles.input}
                             />
                         </>
                         : <View />
@@ -176,3 +164,64 @@ export default function HomeScreen({ navigation }) {
         </View >
     );
 }
+
+const styles = new StyleSheet.create({
+    container: {
+        flex: 1
+    },
+    linearGradient: {
+        height: '100%',
+        flex: 1,
+        justifyContent: 'center'
+    },
+    brandContainer: {
+        flex: 2,
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+    },
+    brandText: {
+        fontFamily: 'LobsterTwo_400Regular_Italic',
+        fontSize: 60,
+        color: 'white'
+    },
+    logoContainer: {
+        flex: 2,
+        alignItems: 'center'
+    },
+    titleContainer: {
+        flex: .4,
+        alignItems: 'center'
+    },
+    titleText: {
+        fontSize: 30,
+        fontFamily: 'DMSans_400Regular',
+        color: 'white'
+    },
+    buttonGroup: {
+        flex: .5,
+        marginBottom: 40,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    typeButton: {
+        backgroundColor: '#323232',
+        borderRadius: 30,
+    },
+    typeContainer: { width: 150, },
+    modalHeader: {
+        fontSize: 25,
+        fontFamily: 'DMSans_400Regular',
+        marginBottom: 10,
+        textAlign: 'center'
+    },
+    label: {
+        fontFamily: 'DMSans_700Bold',
+        fontSize: 20,
+        color: 'black'
+    },
+    input: {
+        fontFamily: 'DMSans_400Regular',
+    }
+
+})
