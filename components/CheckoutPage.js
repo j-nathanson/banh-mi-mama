@@ -7,22 +7,21 @@ import { updateUserProperty } from "../redux/userSlice";
 import * as SecureStore from 'expo-secure-store';
 
 
-
 export default function CheckoutScreen({ navigation }) {
 
-    const creditIds = useSelector(state => state.userReducer.info.creditIds);
-
     const dispatch = useDispatch();
+
 
     const totalOrderCost = useSelector(state => state.cartReducer.totalOrderCost)
     const user = useSelector(state => state.userReducer.info)
     const { address, aptNum, email, firstName, lastName, orderType, phone } = user;
 
+    const creditIds = useSelector(state => state.userReducer.info.creditIds);
     const [username, setUsername] = useState('');
     const [endDigits, setEndDigits] = useState('');
 
-
     const [visible, setVisible] = useState(false);
+    const [payVisible, setPayVisible] = useState(!creditIds.length > 0);
 
     const toggleOverlay = () => {
         setVisible(!visible);
@@ -55,13 +54,13 @@ export default function CheckoutScreen({ navigation }) {
 
                 setUsername(userinfo.nameOnCard);
                 setEndDigits(userinfo.creditNum.substr(-4));
-                console.log("username", username);
-                console.log("credit card", endDigits);
-
             });
+
+        if (creditIds.length > 0) {
+            setPayVisible(false);
+        }
+
     })
-
-
 
     return (
         <View style={{ flex: 1 }}>
@@ -115,14 +114,15 @@ export default function CheckoutScreen({ navigation }) {
                         <Text style={styles.buttonSectionText}>Add a Card</Text>
                     </View>
                 </View>
-                {creditIds.length &&
-                    <Button
-                        title='pay'
-                        containerStyle={{ marginTop: 'auto' }}
-                        onPress={() => presentLocalNotification(firstName)}
-                    >
-                    </Button>
-                }
+
+                <Button
+                    title='pay'
+                    disabled={payVisible}
+                    containerStyle={{ marginTop: 'auto' }}
+                    onPress={() => presentLocalNotification(firstName)}
+                >
+                </Button>
+
 
             </View>
 
