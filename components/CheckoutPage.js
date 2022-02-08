@@ -11,7 +11,6 @@ export default function CheckoutScreen({ navigation }) {
 
     const dispatch = useDispatch();
 
-
     const totalOrderCost = useSelector(state => state.cartReducer.totalOrderCost)
     const user = useSelector(state => state.userReducer.info)
     const { address, aptNum, email, firstName, lastName, orderType, phone } = user;
@@ -21,7 +20,7 @@ export default function CheckoutScreen({ navigation }) {
     const [endDigits, setEndDigits] = useState('');
 
     const [visible, setVisible] = useState(false);
-    const [payVisible, setPayVisible] = useState(!creditIds.length > 0);
+    const [payVisible, setPayVisible] = useState(true);
 
     const toggleOverlay = () => {
         setVisible(!visible);
@@ -122,8 +121,6 @@ export default function CheckoutScreen({ navigation }) {
                     onPress={() => presentLocalNotification(firstName)}
                 >
                 </Button>
-
-
             </View>
 
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: '90%', }} animationType='slide' >
