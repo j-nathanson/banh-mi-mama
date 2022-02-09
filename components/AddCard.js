@@ -26,7 +26,6 @@ export default function AddCard({ navigation }) {
         navigation.navigate('Checkout')
     }
 
-
     return (
         <View style={{ flex: 1, padding: 15 }}>
             <CustomInput
@@ -115,67 +114,4 @@ export default function AddCard({ navigation }) {
             </View>
         </View>
     );
-
 }
-
-
-// <Input
-            //     label='Credit Card Number'
-            //     placeholder='Card Number'
-            //     onChangeText={(value) => setCreditNum(value)}
-            // />
-            // <Input
-            //     label='Name on Card'
-            //     placeholder='Full Name'
-
-            //     onChangeText={(value) => setNameOnCard(value)}
-            // />
-            // <Input
-            //     label='Expiration Date'
-            //     placeholder='MM/YYYY'
-            //     onChangeText={(value) => setExpDate(value)}
-            // />
-            // <Input
-            //     label='Billing Zip Code'
-            //     placeholder='5-digit zip code'
-            //     onChangeText={(value) => setZipCode(value)}
-            // />
-            // <Input
-            //     label='CVV'
-            //     placeholder='CVV'
-            //     onChangeText={(value) => setCCV(value)}
-            // />
-            // <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-            //     <Button
-            //         title='Cancel'
-            //         buttonStyle={{
-            //             backgroundColor: 'red',
-            //             borderColor: 'transparent',
-            //             borderRadius: 30,
-            //         }}
-            //         containerStyle={{
-            //             width: 150,
-            //         }}
-            //         titleStyle={{
-            //             fontFamily: 'DMSans_400Regular',
-            //         }}
-            //         onPress={() => navigation.navigate('Checkout')}
-            //     />
-            //     <Button
-            //         title='Add Card'
-            //         buttonStyle={{
-            //             backgroundColor: '#3e5d18',
-            //             borderColor: 'transparent',
-            //             borderRadius: 30,
-
-            //         }}
-            //         titleStyle={{
-            //             fontFamily: 'DMSans_400Regular',
-            //         }}
-            //         containerStyle={{
-            //             width: 150,
-            //         }}
-            //         onPress={() => addCardToSecureStore()}
-            //     />
-
-            // </View>

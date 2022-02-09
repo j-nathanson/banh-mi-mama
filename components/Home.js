@@ -122,7 +122,7 @@ export default function HomeScreen({ navigation }) {
                         control={control}
                         rules={{
                             required: "Email is Required",
-                            pattern: { value: /(.+)@(.+){2,}\.(.+){2,}/, message: 'Please enter aa valid email.' }
+                            pattern: { value: /(.+)@(.+){2,}\.(.+){2,}/, message: 'Please enter valid email.' }
                         }}
                         label='Email'
                     />
