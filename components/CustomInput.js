@@ -17,11 +17,11 @@ const CustomInput = ({
             rules={rules}
             render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
                 <>
-                    <Text>{label}</Text>
+                    <Text style={styles.label}>{label}</Text>
                     <View
                         style={[
                             styles.container,
-                            { borderColor: error ? 'red' : 'white' },
+                            { borderColor: error ? 'red' : 'grey' },
                         ]}>
                         <TextInput
                             value={value}
@@ -29,6 +29,8 @@ const CustomInput = ({
                             onBlur={onBlur}
                             placeholder={placeholder}
                             secureTextEntry={secureTextEntry}
+                            style={styles.input}
+
                         />
                     </View>
                     {error && (
@@ -47,12 +49,17 @@ const styles = StyleSheet.create({
 
         borderColor: '#e8e8e8',
         borderWidth: 1,
-        borderRadius: 5,
+        borderRadius: 20,
 
         paddingHorizontal: 10,
         marginVertical: 5,
     },
-    input: {},
+    label: {
+        fontFamily: 'DMSans_700Bold',
+    },
+    input: {
+        fontFamily: 'DMSans_400Regular',
+    }
 });
 
 export default CustomInput;
