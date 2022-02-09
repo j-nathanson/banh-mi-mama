@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Button, Icon, Overlay, Input } from "react-native-elements";
 import * as Notifications from 'expo-notifications';
 import { useSelector, useDispatch } from "react-redux";
-import { updateUserProperty } from "../redux/userSlice";
+import { useForm, } from "react-hook-form";
+import { addUser, updateUserProperty } from "../redux/userSlice";
+import CustomInput from "./CustomInput";
 import * as SecureStore from 'expo-secure-store';
 
 
 export default function CheckoutScreen({ navigation }) {
 
     const dispatch = useDispatch();
+
+    const { control, handleSubmit, formState: { } } = useForm();
 
     const totalOrderCost = useSelector(state => state.cartReducer.totalOrderCost)
     const user = useSelector(state => state.userReducer.info)
@@ -25,6 +29,8 @@ export default function CheckoutScreen({ navigation }) {
     const toggleOverlay = () => {
         setVisible(!visible);
     };
+
+    const onSubmit = data => dispatch(addUser(data));
 
     const presentLocalNotification = async (firstName) => {
         function sendNotification() {
@@ -46,6 +52,7 @@ export default function CheckoutScreen({ navigation }) {
         sendNotification();
         navigation.navigate('Home');
     }
+
     useEffect(() => {
         SecureStore.getItemAsync('creditCard')
             .then(userdata => {
@@ -125,77 +132,98 @@ export default function CheckoutScreen({ navigation }) {
             </View>
 
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: '90%', }} animationType='slide' >
-                <Text style={styles.overlayHeader}>
-                    Enter Your Info!
-                </Text>
-
-                <Input
-                    label='First Name'
-                    value={firstName}
-                    leftIcon={{ type: 'font-awesome', name: 'user-o' }}
-                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'firstName', value: value }))}
-                />
-                <Input
-                    label='Last Name'
-                    value={lastName}
-                    leftIcon={{ type: 'entypo', name: 'man' }}
-                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'lastName', value: value }))}
-                />
-
-                <Input
-                    label='Phone Number'
-                    value={phone}
-                    leftIcon={{ type: 'antdesign', name: 'phone' }}
-                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'phone', value: value }))}
-                />
-                <Input
-                    label='Email'
-                    value={email}
-                    leftIcon={{ type: 'feather', name: 'mail' }}
-                    onChangeText={(value) => dispatch(updateUserProperty({ name: 'email', value: value }))}
-                />
-
-                {orderType === 'delivery' ?
-                    <>
-                        <Input
-                            label='Address'
-                            value={address}
-                            leftIcon={{ type: 'font-awesome-5', name: 'house-user' }}
-                            onChangeText={(value) => dispatch(updateUserProperty({ name: 'address', value: value }))}
-
-                        />
-                        <Input
-                            label='Apartment Number'
-                            value={aptNum}
-                            leftIcon={{ type: 'material-community', name: 'doorbell' }}
-                            onChangeText={(value) => dispatch(updateUserProperty({ name: 'aptNum', value: value }))}
-                        />
-                    </>
-                    : <View />
-                }
-                <View style={{ alignItems: 'center' }}>
-                    <Button
-                        title="Finish editing"
-                        iconContainerStyle={{ marginRight: 10 }}
-                        titleStyle={{ fontWeight: '700' }}
-                        buttonStyle={{
-                            borderColor: '#3e5d18',
-                            borderWidth: 1,
-                            backgroundColor: 'white',
-                            borderRadius: 30,
-                        }}
-                        titleStyle={{
-                            color: 'black',
-                            fontFamily: 'DMSans_400Regular',
-                        }}
-                        containerStyle={{
-                            width: 200,
-                        }}
-                        onPress={() => {
-                            toggleOverlay()
+                <ScrollView>
+                    <Text style={styles.overlayHeader}>Edit Your Info!</Text>
+                    <CustomInput
+                        name="firstName"
+                        label='First Name'
+                        value={firstName}
+                        control={control}
+                        rules={{
+                            required: "First Name is Required",
+                            pattern: { value: /^[A-Za-z -]+$/i, message: 'No numbers or symbols for names.' }
                         }}
                     />
-                </View>
+                    <CustomInput
+                        name="lastName"
+                        label='Last Name'
+                        value={lastName}
+                        control={control}
+                        rules={{
+                            required: "Last Name is Required",
+                            pattern: { value: /^[A-Za-z -]+$/i, message: 'No numbers or symbols for names.' }
+                        }}
+                    />
+                    <CustomInput
+                        label='Phone Number'
+                        name="phone"
+                        value={phone}
+                        control={control}
+                        rules={{
+                            required: 'A phone number is required',
+                            pattern: { value: /^[1\(]?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/, message: 'Please enter a valid number.' }
+                        }}
+
+                    />
+                    <CustomInput
+                        label='Email'
+                        name="email"
+                        value={email}
+                        control={control}
+                        rules={{
+                            required: "Email is Required",
+                            pattern: { value: /(.+)@(.+){2,}\.(.+){2,}/, message: 'Please enter aa valid email.' }
+                        }}
+                    />
+                    {orderType === 'delivery' ?
+                        <>
+                            <CustomInput
+                                label='Address'
+                                name="address"
+                                value={address}
+                                control={control}
+                                rules={{
+                                    required: "Address is Required",
+                                    pattern: { value: /^[\w -1]*$/, message: 'Please enter a valid address.' }
+                                }}
+
+                            />
+                            <CustomInput
+                                label='Apartment Number'
+                                name="aptNum"
+                                value={aptNum}
+                                control={control}
+                                rules={{
+                                    pattern: { value: /^[\w]*$/, message: 'Please enter a valid apartment number.' }
+                                }}
+                            />
+                        </>
+                        : <View />
+                    }
+                    <View style={{ alignItems: 'center' }}>
+                        <Button
+                            title="Finish Editing"
+                            icon={{
+                                name: 'shopping-bag',
+                                type: 'entypo',
+                                size: 15,
+                                color: 'white',
+                            }}
+                            iconContainerStyle={{ marginRight: 10 }}
+                            titleStyle={{ fontWeight: '700' }}
+                            buttonStyle={{
+                                backgroundColor: '#323232',
+                                borderColor: 'transparent',
+                                borderRadius: 30,
+                            }}
+                            containerStyle={{
+                                width: 200,
+                                marginTop: 10
+                            }}
+                            onPress={handleSubmit(onSubmit)}
+                        />
+                    </View>
+                </ScrollView>
             </Overlay>
         </View >
     );

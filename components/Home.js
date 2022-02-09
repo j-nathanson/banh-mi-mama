@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, Image, ScrollView, StyleSheet, TextInput } from 'react-native';
-import { Button, Overlay, Input, Icon } from 'react-native-elements'
+import { View, Text, Image, ScrollView, StyleSheet, } from 'react-native';
+import { Button, Overlay, } from 'react-native-elements'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector, useDispatch } from "react-redux";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, } from "react-hook-form";
 import { addUser, updateUserProperty } from "../redux/userSlice";
 import CustomInput from "./CustomInput";
 

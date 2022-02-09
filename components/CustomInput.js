@@ -9,12 +9,14 @@ const CustomInput = ({
     rules = {},
     placeholder,
     secureTextEntry,
+    value = ''
 }) => {
     return (
         <Controller
             control={control}
             name={name}
             rules={rules}
+            defaultValue={value}
             render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
                 <>
                     <Text style={styles.label}>{label}</Text>

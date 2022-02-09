@@ -19,10 +19,10 @@ export const userReducer = createSlice({
     initialState,
     reducers: {
         addUser: (state, action) => {
-            const newInfo = action.payload
-            newInfo.orderType = state.info.orderType
-            newInfo.creditIds = state.info.creditIds
-            state.info = newInfo
+            const newInfo = action.payload;
+            newInfo.orderType = state.info.orderType;
+            newInfo.creditIds = state.info.creditIds;
+            state.info = newInfo;
         },
         updateUserProperty: (state, action) => {
             const property = action.payload.name;
