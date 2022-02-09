@@ -1,7 +1,7 @@
 
 import { StyleSheet, Text, View } from 'react-native';
 import { Input, Button, CheckBox } from 'react-native-elements';
-import React, { useState } from 'react';
+import React from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCreditCard } from '../redux/userSlice';
@@ -12,12 +12,6 @@ export default function AddCard({ navigation }) {
 
     const dispatch = useDispatch();
     const { control, handleSubmit, formState: { } } = useForm();
-
-    const [creditNum, setCreditNum] = useState('');
-    const [nameOnCard, setNameOnCard] = useState('');
-    const [expDate, setExpDate] = useState('');
-    const [zipCode, setZipCode] = useState('');
-    const [ccv, setCCV] = useState('');
     const creditIds = useSelector(state => state.userReducer.info.creditIds);
     const id = creditIds.length
 
