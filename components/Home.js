@@ -1,21 +1,37 @@
 import React, { useState } from "react";
-import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Image, ScrollView, StyleSheet, TextInput } from 'react-native';
 import { Button, Overlay, Input, Icon } from 'react-native-elements'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector, useDispatch } from "react-redux";
+import { useForm, Controller } from "react-hook-form";
 import { updateUserProperty } from "../redux/userSlice";
+import CustomInput from "./CustomInput";
 
 export default function HomeScreen({ navigation }) {
     const dispatch = useDispatch();
     const [visible, setVisible] = useState(false);
     const user = useSelector(state => state.userReducer.info)
-    const { address, aptNum, email, firstName, lastName, orderType, phone } = user;
-    const regex = /^[a-zA-Z]+$/
+    const {
+        address,
+        aptNum,
+        email,
+        firstName,
+        lastName,
+        orderType,
+        phone } = user;
+    const {
+        control,
+        handleSubmit,
+        formState: { errors }
+    } = useForm();
 
     const toggleOverlay = () => {
         setVisible(!visible);
     };
 
+    const onSubmit = data => {
+        console.log(data);
+    }
     return (
         <View style={styles.container}>
             <LinearGradient
@@ -75,6 +91,22 @@ export default function HomeScreen({ navigation }) {
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: '90%', }} animationType='slide' >
                 <ScrollView>
                     <Text style={styles.modalHeader}>Enter Your Info!</Text>
+
+                    <CustomInput
+                        name="firstName"
+                        placeholder="First Name"
+                        control={control}
+                        rules={{ required: "First Name is Required" }}
+                        label='First Name'
+                    />
+                    <CustomInput
+                        name="phone"
+                        placeholder="123-321-1231"
+                        control={control}
+                        rules={{ required: true, minLength: { value: 10, message: 'please enter a valid phone number' } }}
+                        label='Phone Number'
+                    />
+
                     <Input
                         label='First Name'
                         placeholder='Sean'
@@ -158,11 +190,7 @@ export default function HomeScreen({ navigation }) {
                                 width: 200,
 
                             }}
-
-                            onPress={() => {
-                                toggleOverlay()
-                                navigation.navigate('Menu')
-                            }}
+                            onPress={handleSubmit(data => console.log(data))}
                         />
                     </View>
                 </ScrollView>
@@ -231,3 +259,8 @@ const styles = new StyleSheet.create({
     }
 
 })
+
+//     () => {
+    //     // toggleOverlay()
+    //     // navigation.navigate('Menu')
+    // }
