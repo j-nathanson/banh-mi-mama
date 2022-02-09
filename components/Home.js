@@ -4,25 +4,17 @@ import { Button, Overlay, Input, Icon } from 'react-native-elements'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector, useDispatch } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
-import { updateUserProperty } from "../redux/userSlice";
+import { addUser, updateUserProperty } from "../redux/userSlice";
 import CustomInput from "./CustomInput";
 
 export default function HomeScreen({ navigation }) {
     const dispatch = useDispatch();
     const [visible, setVisible] = useState(false);
-    const user = useSelector(state => state.userReducer.info)
-    const {
-        address,
-        aptNum,
-        email,
-        firstName,
-        lastName,
-        orderType,
-        phone } = user;
+    const orderType = useSelector(state => state.userReducer.info.orderType)
     const {
         control,
         handleSubmit,
-        formState: { errors }
+        formState: { }
     } = useForm();
 
     const toggleOverlay = () => {
@@ -30,8 +22,10 @@ export default function HomeScreen({ navigation }) {
     };
 
     const onSubmit = data => {
-        console.log(data);
+        dispatch(addUser(data));
+        navigation.navigate('Menu');
     }
+
     return (
         <View style={styles.container}>
             <LinearGradient
@@ -91,33 +85,44 @@ export default function HomeScreen({ navigation }) {
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: '90%', }} animationType='slide' >
                 <ScrollView>
                     <Text style={styles.modalHeader}>Enter Your Info!</Text>
-
                     <CustomInput
                         name="firstName"
+                        label='First Name'
                         placeholder="First Name"
                         control={control}
-                        rules={{ required: "First Name is Required" }}
-                        label='First Name'
+                        rules={{
+                            required: "First Name is Required",
+                            pattern: { value: /^[A-Za-z -]+$/i, message: 'No numbers or symbols for names.' }
+                        }}
                     />
                     <CustomInput
                         name="lastName"
+                        label='Last Name'
                         placeholder="Last Name"
                         control={control}
-                        rules={{ required: "Last Name is Required" }}
-                        label='Last Name'
+                        rules={{
+                            required: "Last Name is Required",
+                            pattern: { value: /^[A-Za-z -]+$/i, message: 'No numbers or symbols for names.' }
+                        }}
                     />
                     <CustomInput
                         name="phone"
                         placeholder="123-321-1231"
                         control={control}
-                        rules={{ required: true, minLength: { value: 10, message: 'please enter a valid phone number' } }}
+                        rules={{
+                            required: 'A phone number is required',
+                            pattern: { value: /^[1\(]?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/, message: 'Please enter a valid number.' }
+                        }}
                         label='Phone Number'
                     />
                     <CustomInput
                         name="email"
                         placeholder="Email"
                         control={control}
-                        rules={{ required: "Email is Required" }}
+                        rules={{
+                            required: "Email is Required",
+                            pattern: { value: /(.+)@(.+){2,}\.(.+){2,}/, message: 'Please enter aa valid email.' }
+                        }}
                         label='Email'
                     />
                     {orderType === 'delivery' ?
@@ -127,7 +132,10 @@ export default function HomeScreen({ navigation }) {
                                 label='Address'
                                 placeholder="Full Address"
                                 control={control}
-                                rules={{ required: "Address is Required" }}
+                                rules={{
+                                    required: "Address is Required",
+                                    pattern: { value: /^[\w -1]*$/, message: 'Please enter a valid address.' }
+                                }}
 
                             />
                             <CustomInput
@@ -135,6 +143,9 @@ export default function HomeScreen({ navigation }) {
                                 label='Apartment Number'
                                 placeholder="3B"
                                 control={control}
+                                rules={{
+                                    pattern: { value: /^[\w]*$/, message: 'Please enter a valid apartment number.' }
+                                }}
                             />
                         </>
                         : <View />
@@ -159,7 +170,7 @@ export default function HomeScreen({ navigation }) {
                                 width: 200,
 
                             }}
-                            onPress={handleSubmit(data => console.log(data))}
+                            onPress={handleSubmit(onSubmit)}
                         />
                     </View>
                 </ScrollView>
