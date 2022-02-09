@@ -100,72 +100,41 @@ export default function HomeScreen({ navigation }) {
                         label='First Name'
                     />
                     <CustomInput
+                        name="lastName"
+                        placeholder="Last Name"
+                        control={control}
+                        rules={{ required: "Last Name is Required" }}
+                        label='Last Name'
+                    />
+                    <CustomInput
                         name="phone"
                         placeholder="123-321-1231"
                         control={control}
                         rules={{ required: true, minLength: { value: 10, message: 'please enter a valid phone number' } }}
                         label='Phone Number'
                     />
-
-                    <Input
-                        label='First Name'
-                        placeholder='Sean'
-                        leftIcon={{ type: 'font-awesome', name: 'user-o' }}
-                        onChangeText={(value) => dispatch(updateUserProperty({ name: 'firstName', value: value }))}
-                        value={firstName}
-                        labelStyle={styles.label}
-                        inputStyle={styles.input}
-
-                    />
-                    <Input
-                        label='Last Name'
-                        placeholder='Nguyen'
-                        leftIcon={{ type: 'entypo', name: 'man' }}
-                        onChangeText={(value) => dispatch(updateUserProperty({ name: 'lastName', value: value }))}
-                        value={lastName}
-                        labelStyle={styles.label}
-                        inputStyle={styles.input}
-                    />
-
-                    <Input
-                        placeholder='xxx-xxx-xxxx'
-                        label='Phone Number'
-                        leftIcon={{ type: 'antdesign', name: 'phone' }}
-                        onChangeText={(value) => dispatch(updateUserProperty({ name: 'phone', value: value }))}
-                        value={phone}
-                        labelStyle={styles.label}
-                        inputStyle={styles.input}
-                    />
-                    <Input
+                    <CustomInput
+                        name="email"
+                        placeholder="Email"
+                        control={control}
+                        rules={{ required: "Email is Required" }}
                         label='Email'
-                        placeholder='CaPhe365@gmail.com'
-                        leftIcon={{ type: 'feather', name: 'mail' }}
-                        onChangeText={(value) => dispatch(updateUserProperty({ name: 'email', value: value }))}
-                        value={email}
-                        labelStyle={styles.label}
-                        inputStyle={styles.input}
                     />
-
                     {orderType === 'delivery' ?
                         <>
-                            <Input
-                                placeholder='33 North Front St'
-                                label='Street address'
-                                leftIcon={{ type: 'font-awesome-5', name: 'house-user' }}
-                                onChangeText={(value) => dispatch(updateUserProperty({ name: 'address', value: value }))}
-                                value={address}
-                                labelStyle={styles.label}
-                                inputStyle={styles.input}
+                            <CustomInput
+                                name="address"
+                                label='Address'
+                                placeholder="Full Address"
+                                control={control}
+                                rules={{ required: "Address is Required" }}
 
                             />
-                            <Input
+                            <CustomInput
+                                name="aptNum"
                                 label='Apartment Number'
-                                placeholder='6B'
-                                leftIcon={{ type: 'material-community', name: 'doorbell' }}
-                                onChangeText={(value) => dispatch(updateUserProperty({ name: 'aptNum', value: value }))}
-                                value={aptNum}
-                                labelStyle={styles.label}
-                                inputStyle={styles.input}
+                                placeholder="3B"
+                                control={control}
                             />
                         </>
                         : <View />
