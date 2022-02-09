@@ -27,13 +27,11 @@ export const userReducer = createSlice({
         updateUserProperty: (state, action) => {
             const property = action.payload.name;
             const value = action.payload.value;
-            state.info[property] = value
-            console.log(state.info)
+            state.info[property] = value;
         },
         addCreditCard: (state, action) => {
             const id = action.payload;
             state.info.creditIds.push(id);
-            console.log(state.info.creditIds)
         }
     },
 })
