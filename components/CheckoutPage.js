@@ -30,7 +30,10 @@ export default function CheckoutScreen({ navigation }) {
         setVisible(!visible);
     };
 
-    const onSubmit = data => dispatch(addUser(data));
+    const onSubmit = data => {
+        toggleOverlay();
+        dispatch(addUser(data));
+    }
 
     const presentLocalNotification = async (firstName) => {
         function sendNotification() {
@@ -242,7 +245,6 @@ const styles = new StyleSheet.create({
         fontSize: 30
     },
     userInfo: {
-
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
