@@ -23,6 +23,7 @@ export default function HomeScreen({ navigation }) {
 
     const onSubmit = data => {
         dispatch(addUser(data));
+        toggleOverlay();
         navigation.navigate('Menu');
     }
 
