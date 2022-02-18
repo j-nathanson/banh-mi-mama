@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { Controller, } from 'react-hook-form';
-import { Input } from 'react-native-elements';
+
 const CustomInput = ({
     control,
     name,

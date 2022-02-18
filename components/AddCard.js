@@ -35,7 +35,7 @@ export default function AddCard({ navigation }) {
                 control={control}
                 rules={{
                     required: "This is required",
-                    pattern: { value: /^\d{15}$/, message: 'Must be 15 digits' }
+                    pattern: { value: /^\d{15,16}$/, message: 'Please enter a valid credit card number' }
                 }}
             />
             <CustomInput
@@ -69,13 +69,13 @@ export default function AddCard({ navigation }) {
                 }}
             />
             <CustomInput
-                name="ccv"
-                label='CCV'
-                placeholder='CCV'
+                name="cvv"
+                label='CvV'
+                placeholder='CVV'
                 control={control}
                 rules={{
                     required: "First Name is Required",
-                    pattern: { value: /^\d{3,4}$/, message: 'Please enter your ccv code' }
+                    pattern: { value: /^\d{3,4}$/, message: 'Please enter your cvv code' }
                 }}
             />
 

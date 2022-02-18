@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { Button, Icon, Overlay, Input } from "react-native-elements";
+import { Button, Icon, Overlay } from "react-native-elements";
 import * as Notifications from 'expo-notifications';
 import { useSelector, useDispatch } from "react-redux";
-import { useForm, } from "react-hook-form";
-import { addUser, updateUserProperty } from "../redux/userSlice";
+import { useForm } from "react-hook-form";
+import { addUser } from "../redux/userSlice";
 import CustomInput from "./CustomInput";
 import * as SecureStore from 'expo-secure-store';
 

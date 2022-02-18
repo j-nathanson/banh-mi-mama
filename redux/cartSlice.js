@@ -14,7 +14,6 @@ export const cartReducer = createSlice({
             item.id = state.cart.length
             state.cart.push(item);
             state.totalOrderCost += item.totalCost;
-            // console.log(state.cart);
         },
         removeItem: (state, action) => {
             const index = state.cart.findIndex(item => item.id === action.payload.id)

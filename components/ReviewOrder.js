@@ -9,6 +9,8 @@ import { removeItem } from "../redux/cartSlice";
 export default function ReviewOrderScreen({ navigation }) {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cartReducer.cart)
+    const orderType = useSelector(state => state.userReducer.info.orderType);
+
     let totalOrderCost = useSelector(state => state.cartReducer.totalOrderCost)
     totalOrderCost = (Math.round(totalOrderCost * 100) / 100).toFixed(2)
 
@@ -48,7 +50,7 @@ export default function ReviewOrderScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.deliveryContainer}>
-                <Text style={styles.delivery}>Delivery in: 15-20 mins</Text>
+                <Text style={styles.delivery}>{orderType} in: 15-20 mins</Text>
             </View>
             <View style={{ flex: 5 }}>
                 <FlatList
