@@ -13,7 +13,7 @@ export default function AddCard({ navigation }) {
     const dispatch = useDispatch();
     const { control, handleSubmit, formState: { } } = useForm();
     const creditIds = useSelector(state => state.userReducer.info.creditIds);
-    const id = creditIds.length
+    const id = creditIds.length;
 
     const addCardToSecureStore = (data) => {
         dispatch(addCreditCard(id));
