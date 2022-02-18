@@ -1,5 +1,5 @@
-import React, { useState, } from 'react';
-import { CheckBox, Icon } from 'react-native-elements';
+import React from 'react';
+import { CheckBox } from 'react-native-elements';
 import { View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateProperty } from '../redux/sandwichSlice';
@@ -7,12 +7,13 @@ import { updateProperty } from '../redux/sandwichSlice';
 export default function SandwichCustomize() {
 
     const dispatch = useDispatch();
-    const cilantro = useSelector(state => state.sandwichReducer.customizations.cilantro);
-    const pickledVeg = useSelector(state => state.sandwichReducer.customizations.pickledVeg);
-    const pate = useSelector(state => state.sandwichReducer.customizations.pate);
-    const mayonnaise = useSelector(state => state.sandwichReducer.customizations.mayonnaise);
-    const soySauce = useSelector(state => state.sandwichReducer.customizations.soySauce);
-    const chili = useSelector(state => state.sandwichReducer.customizations.chili);
+    const customizations = useSelector(state => state.sandwichReducer.customizations)
+    const cilantro = customizations.cilantro;
+    const pickledVeg = customizations.pickledVeg;
+    const pate = customizations.pate;
+    const mayonnaise = customizations.mayonnaise;
+    const soySauce = customizations.soySauce;
+    const chili = customizations.chili;
 
     return (
         <View style={{ flexDirection: 'column' }}>

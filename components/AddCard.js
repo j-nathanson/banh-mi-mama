@@ -1,12 +1,12 @@
 
-import { StyleSheet, Text, View } from 'react-native';
-import { Input, Button, CheckBox } from 'react-native-elements';
 import React from 'react';
+import { View } from 'react-native';
+import { Button } from 'react-native-elements';
 import * as SecureStore from 'expo-secure-store';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCreditCard } from '../redux/userSlice';
 import CustomInput from "./CustomInput";
-import { useForm, } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export default function AddCard({ navigation }) {
 
