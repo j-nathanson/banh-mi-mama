@@ -70,7 +70,7 @@ export default function AddCard({ navigation }) {
             />
             <CustomInput
                 name="cvv"
-                label='CvV'
+                label='CVV'
                 placeholder='CVV'
                 control={control}
                 rules={{
